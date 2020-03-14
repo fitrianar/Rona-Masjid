@@ -14,6 +14,7 @@ class Masjid extends Model
     protected $fillable = [
         'id',
         'nama_masjid',
+        'gambar',
         'alamat_masjid',
         'l_tanah',
         'p_tanah',

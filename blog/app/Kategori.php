@@ -4,16 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role_akses extends Model
+class Kategori extends Model
 {
-    protected $table = "role_akses";        
+    protected $table = "kategori";        
     protected $primaryKey = "id";
     protected $keyType = 'string';
-    public $timestamps = false;
+   // public $timestamps = false;
 
     protected $fillable = [
         'id',
-        'jenis_user'
+        'nama'
     ];
-
 }

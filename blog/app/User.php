@@ -5,10 +5,15 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Support\Facades\DB;
+use App\Role_akses;
 class User extends Authenticatable
 {
     use Notifiable;
+
+    protected $table = "users";        
+    protected $primaryKey = "id";
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -16,8 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+        'id', 'role_akses_id', 'nama', 'no_ktp', 'email', 'password', 'no_telpon', 'alamat', 'jenis_kelamin', 'email_verified', 'gambar'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,6 +47,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+
+    public function role()
+    {
+        return Role_akses::where('id', auth()->user()->role_akses_id)->first();
+    }
+
+
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
@@ -67,6 +78,21 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return null !== $this->roles()->where('username', $role)->first();
+    }
+
+    public function masjid()
+    {
+        if(auth()->user()->role()->id == 3){ //pengurus == true
+           
+            return DB::table('masjid')
+            ->join('user_has_masjids', 'masjid.id', 'user_has_masjids.masjid_id')
+            ->where('user_has_masjids.user_id', auth()->user()->id)
+            ->first();
+        }
+
+        return 'Admin';
+
+
     }
 
 }
