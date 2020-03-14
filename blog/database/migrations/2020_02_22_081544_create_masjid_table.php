@@ -20,7 +20,7 @@ class CreateMasjidTable extends Migration
             $table->string('l_tanah', 10);    
             $table->string('p_tanah', 10);  
             $table->string('luas_bangunan', 10);
-            $table->text('lampiran_masjid');
+            $table->text('lampiran_masjid')->nullable();
             $table->enum('status_masjid', ['Waqaf','Pribadi']);         
             $table->string('deskripsi', 64); 
             $table->timestamps();
