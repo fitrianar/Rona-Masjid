@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kegiatan;
+use App\Fasilitas;
 
-class KegiatanController extends Controller
+class FasilitasController extends Controller
 {
-
     public function __construct()
     {
        
     }
     public function index()
     {
-        $kegiatan = Kegiatan::paginate(5);
-        return view('cms.kegiatan.index', compact('kegiatan'));
+        $fasilitas = Fasilitas::paginate(5);
+        return view('cms.fasilitas.index', compact('fasilitas'));
     }
 
     /**
@@ -32,7 +31,7 @@ class KegiatanController extends Controller
 
     public function create(Request $request)
     {
-        return view('cms.kegiatan.create');
+        return view('cms.fasilitas.create');
     }
 
     /**
@@ -46,10 +45,6 @@ class KegiatanController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:64',
-            'tgl_dilaksanakan' => 'required',
-            'jam_dimulai' => 'required',
-            'jam_akhir' => 'required',
-            'deskripsi_kegiatan' => 'required|string|max:1000'
         ]);
 
         $gambar = null;
@@ -63,15 +58,15 @@ class KegiatanController extends Controller
             $gambar = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
         }  
         
-        $request['poster'] = $gambar;
-        $request['tgl_dibuat'] = now();
+        $request['foto'] = $gambar;
+        $request['tgl_ditambah'] = now();
         $request['user_id'] = auth()->user()->id;
         $request['masjid_id'] = auth()->user()->masjid()->id;
-        Kegiatan::Create($request->all());  //ini cara cepat buat insert ke db semua formnya
+        fasilitas::Create($request->all());  //ini cara cepat buat insert ke db semua formnya
        
 
         $request->session()->flash('alert-success', 'Sukses Menambah Data');
-        return redirect()->route('kegiatan.index');
+        return redirect()->route('fasilitas.index');
 
     }
 
@@ -83,7 +78,7 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        $artikel = Artikel::find($id);
+        $fasilitas = Fasilitas::find($id);
         return view('artikel.show', compact('artikel'));
     }
 
@@ -96,8 +91,8 @@ class KegiatanController extends Controller
     public function edit($id)
     {
 
-        $kegiatan = Kegiatan::where('id', $id)->first();
-        return view('cms.kegiatan.edit', compact('kegiatan'));
+        $fasilitas = Fasilitas::where('id', $id)->first();
+        return view('cms.fasilitas.edit', compact('fasilitas'));
     }
 
     /**
@@ -111,13 +106,9 @@ class KegiatanController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:64',
-            'tgl_dilaksanakan' => 'required',
-            'jam_dimulai' => 'required',
-            'jam_akhir' => 'required',
-            'deskripsi_kegiatan' => 'required|string|max:1000'
         ]);
 
-        $gambar = $request->file('poster');
+        $gambar = $request->file('foto');
 
         if($gambar){
             $name = $gambar->getClientOriginalName();
@@ -126,17 +117,17 @@ class KegiatanController extends Controller
             $nameActExp = strtolower(end($nameExp));
             $newName = uniqid( '', true).'.'.$nameActExp;
             $upload = $gambar->move($dist, $newName);
-            $request['poster'] = $dist.$newName;
+            $request['foto'] = $dist.$newName;
 
-            Kegiatan::where('id', $id)->update($request->except('_token'));
+            Fasilitas::where('id', $id)->update($request->except('_token'));
         }else{
-            Kegiatan::where('id', $id)->update($request->except('_token'));
+            Fasilitas::where('id', $id)->update($request->except('_token'));
         }
 
        // DB::table('artikel')->insert($request->All); //query builder
 
        $request->session()->flash('alert-success', 'Sukses Mengubah Data');
-        return redirect()->route('kegiatan.index');
+        return redirect()->route('fasilitas.index');
     }
 
     /**
@@ -147,9 +138,9 @@ class KegiatanController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $kegiatan = Kegiatan::where('id', $id)->delete();
+        $fasilitas = Fasilitas::where('id', $id)->delete();
         $request->session()->flash('alert-success', 'Sukses Menghapus Data');
-        return redirect()->route('kegiatan.index');
+        return redirect()->route('fasilitas.index');
         //return redirect('/home')->with('Success', 'Article has been delete');
     }
 }
