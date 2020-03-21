@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'ProfileController@index')->name('profile.index');    //nampilin list artikel table
         Route::get('/buat', 'ProfileController@create')->name('profile.create');    //nampilin form tambah artikel
         Route::post('/simpan', 'ProfileController@store')->name('profile.store');   //simpan data artikel ke db
-        Route::get('/edit/{id}', 'ProfilelController@edit')->name('profile.edit'); //nampilin form edit artikel
+        Route::get('/edit/{id}', 'ProfileController@edit')->name('profile.edit'); //nampilin form edit artikel
         Route::post('/ubah/{id}', 'ProfileController@update')->name('profile.update');   //ubah data artikel ke db
         Route::get('/hapus/{id}', 'ProfileController@destroy')->name('profile.delete');  //hapus data artikel
     });
