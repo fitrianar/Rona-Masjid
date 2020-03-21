@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="name">Upload Berkas</label><br>
+        <label for="name">Upload Gambar</label><br>
         <img src="{{ asset($article->gambar) }}" height="100px">
         <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" value="{{ $article->file }}" type="file" name="file" >
         @if ($errors->has('file'))
@@ -31,7 +31,7 @@
 
     <div class="form-group ">
         <label for="name">Isi</label>
-        <textarea class="form-control {{ $errors->has('judul') ? 'is-invalid' : '' }}" name="isi" id="article-ckeditor">{{ $article->isi }}</textarea>
+        <textarea class="form-control {{ $errors->has('isi') ? 'is-invalid' : '' }}" name="isi" id="article-ckeditor">{{ $article->isi }}</textarea>
         @if ($errors->has('isi'))
             <div class="text-danger">
             <p>{{ $errors->first('isi')}}</p>

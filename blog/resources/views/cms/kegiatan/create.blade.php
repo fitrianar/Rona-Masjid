@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('title', 'Tambah Kegiatan')
 @section('title-content', 'Tambah Kegiatan')
@@ -21,9 +20,9 @@
     <div class="form-group ">
         <label for="parent_id">Tanggal Dilaksanakan</label>
         <input type="date" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" name="tgl_dilaksanakan" value="{{ old('tgl_dilaksanakan') }}" required>
-        @if ($errors->has('nama'))
+        @if ($errors->has('tgl_dilaksanakan'))
             <div class="text-danger">
-            <p>{{ $errors->first('nama')}}</p>
+            <p>{{ $errors->first('tgl_dilaksanakan')}}</p>
             </div>
         @endif
     </div>
@@ -49,8 +48,8 @@
     </div>
 
     <div class="form-group ">
-        <label for="parent_id">Deskripsi Kegiatan</label>
-        <textarea class="form-control {{ $errors->has('deskripsi_kegiatan') ? 'is-invalid' : '' }}" name="deskripsi_kegiatan" value="{{ old('deskripsi_kegiatan') }}" id="kegiatan-ckeditor"></textarea>
+        <label for="name">Deskripsi Kegiatan</label>
+        <textarea class="form-control" name="deskripsi_kegiatan" value="{{ old('deskripsi_kegiatan') }}"  id="kegiatan-ckeditor"></textarea>
         @if ($errors->has('deskripsi_kegiatan'))
             <div class="text-danger">
             <p>{{ $errors->first('deskripsi_kegiatan')}}</p>
@@ -60,7 +59,7 @@
 
     <div class="form-group ">
         <label for="name">Upload Poster</label>
-        <input id="minute_length" class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" name="file" value="{{ old('file') }}" type="file" name="file" required="">
+        <input id="minute_length" class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" value="{{ old('file') }}" type="file" name="file" required="">
         @if ($errors->has('file'))
             <div class="text-danger">
             <p>{{ $errors->first('file')}}</p>

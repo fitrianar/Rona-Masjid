@@ -223,8 +223,8 @@
           </li>
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'article') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'profile') ? 'menu-open' : ''}}">
+            <a href="{{ route('profile.index') }}" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p># Profile Masjid
                 </p>
@@ -282,7 +282,7 @@
           </li>
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'article') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'fasilitas') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
@@ -292,13 +292,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('fasilitas.index') }}" class="nav-link {{ url()->current()==url('/article') ? 'active' : '' }}">
+                <a href="{{ route('fasilitas.index') }}" class="nav-link {{ url()->current()==url('/fasilitas') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Index</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('fasilitas.create') }}" class="nav-link {{ url()->current()==url('/article/buat') ? 'active' : ''}}">
+                <a href="{{ route('fasilitas.create') }}" class="nav-link {{ url()->current()==url('/fasilitas/buat') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Baru</p>
                 </a>

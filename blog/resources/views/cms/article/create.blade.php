@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="name">Upload Berkas</label>
+        <label for="name">Upload Gambar</label>
         <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}" required="">
         @if ($errors->has( 'file'))
             <div class="text-danger">

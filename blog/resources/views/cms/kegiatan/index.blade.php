@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Kegiatan')
 @section('title-content', 'Data Kegiatan')
-@section('footer-content', '-')
+@section('footer-content')
 
 @section('content')
 
-<table class="table table-bordered">
+<table id="kegiatan" class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -25,8 +25,12 @@
       <td>{{ $kgtn->nama }}</td>
       <td>{{ $kgtn->tgl_dilaksanakan }}</td>
       <td>{{ $kgtn->jam_dimulai }} s/d {{ $kgtn->jam_akhir }} </td>
-      <td>{{ $kgtn->deskripsi_kegiatan }}</td>
-      <td><img src="{{ asset($kgtn->poster) }}" width="300px" height="300px"></td>
+      @if(strlen($kgtn->deskripsi_kegiatan) > 50)
+        <td>{!! substr($kgtn->deskripsi_kegiatan, 0, 50) . '...' !!}</td>
+      @else
+        <td>{!! $kgtn->deskripsi_kegiatan !!}</td>
+      @endif
+      <td><img src="{{ asset($kgtn->poster) }}" width="200px" height="200px"></td>
       <td>{!! $kgtn->tgl_dibuat !!}</td>
       
       <td>
@@ -49,3 +53,20 @@
 </div>
 
 @endsection
+
+@push('css')
+<!-- datatables -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css'>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css'>
+@endpush
+
+@push('script')
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#kegiatan').DataTable();
+} );
+</script>
+@endpush
