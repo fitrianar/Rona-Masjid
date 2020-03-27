@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'role_akses_id', 'nama', 'no_ktp', 'email', 'password', 'no_telpon', 'alamat', 'jenis_kelamin', 'email_verified', 'gambar'];
+        'id', 'role_akses_id', 'nama', 'no_ktp', 'email', 'password', 'no_telpon', 'alamat', 'jenis_kelamin', 'email_verified', 'gambar', 'masjid_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -80,13 +80,17 @@ class User extends Authenticatable
         return null !== $this->roles()->where('username', $role)->first();
     }
 
-    public function masjid()
+    public static function masjid()
     {
         if(auth()->user()->role()->id == 3){ //pengurus == true
            
             return DB::table('masjid')
-            ->join('user_has_masjids', 'masjid.id', 'user_has_masjids.masjid_id')
-            ->where('user_has_masjids.user_id', auth()->user()->id)
+            ->join('users', 'masjid.id', 'users.masjid_id')
+            ->where('users.id', auth()->user()->id)
+            ->select(['masjid.id as id',
+            'masjid.nama_masjid'
+                
+            ])
             ->first();
         }
 

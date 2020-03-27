@@ -32,4 +32,12 @@ class ImageUpload
         Storage::disk('public')->put($dir.$fileName, $data);
     }
 
+    public static function pushBerkas($dir, $data)
+    {
+        $fileName    = uniqid().'-'.$data->getClientOriginalName();
+        $data->move($dir, $fileName);
+
+        return $dir.$fileName;
+    }
+
 }
