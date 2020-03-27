@@ -22,6 +22,7 @@
       <th scope="col">No Telepon</th>
       <th scope="col">Alamat</th>
       <th scope="col">Jenis Kelamin</th>
+      <th scope="col">Foto</th>
       <th scope="col">Verifikasi</th>
       <th scope="col">Aksi</th>
     </tr> <?php ?>
@@ -38,6 +39,7 @@
       <td>{{ $user->no_telpon }}</td>
       <td>{{ $user->alamat }}</td>
       <td>{{ $user->jenis_kelamin }}</td>
+      <td><img src="{{asset($user->gambar)}}" width="100"></td>
       @if($user->email_verified === null)
         <td><button class="btn btn-sm btn-danger">Belum Terverifikasi</button></td>
       @else

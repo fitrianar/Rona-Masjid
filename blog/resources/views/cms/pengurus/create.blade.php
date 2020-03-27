@@ -26,7 +26,7 @@
 
     <div class="form-group ">
         <label for="name">Gambar</label>
-        <input id="minute_length"  class="form-control" type="file" name="gambar" required="">
+        <input id="minute_length"  class="form-control" type="file" name="file" required="">
     </div>
 
     <div class="form-group ">

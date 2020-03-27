@@ -31,7 +31,7 @@
 
     <div class="form-group ">
         <label for="name">Isi</label>
-        <textarea class="form-control {{ $errors->has('isi') ? 'is-invalid' : '' }}" name="isi" id="article-ckeditor">{{ $article->isi }}</textarea>
+        <textarea class="form-control {{ $errors->has('isi') ? 'is-invalid' : '' }}" name="isi" id="textarea-ckeditor">{{ $article->isi }}</textarea>
         @if ($errors->has('isi'))
             <div class="text-danger">
             <p>{{ $errors->first('isi')}}</p>

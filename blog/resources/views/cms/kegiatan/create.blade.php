@@ -49,8 +49,8 @@
 
     <div class="form-group ">
         <label for="name">Deskripsi Kegiatan</label>
-        <textarea class="form-control" name="deskripsi_kegiatan" value="{{ old('deskripsi_kegiatan') }}"  id="kegiatan-ckeditor"></textarea>
-        @if ($errors->has('deskripsi_kegiatan'))
+        <textarea class="form-control" name="deskripsi_kegiatan" value="{{ old('deskripsi_kegiatan') }}"  id="textarea-ckeditor"></textarea>
+        @if ($errors->has( 'deskripsi_kegiatan'))
             <div class="text-danger">
             <p>{{ $errors->first('deskripsi_kegiatan')}}</p>
             </div>

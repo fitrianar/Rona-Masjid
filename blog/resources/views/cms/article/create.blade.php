@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('title', 'Tambah Artikel')
-@section('title-content', 'Ini Tambah Artikel')
+@section('title-content', 'Tambah Artikel')
 @section('footer-content')
 
 @section('content')
@@ -30,7 +30,7 @@
 
     <div class="form-group ">
         <label for="name">Isi</label>
-        <textarea class="form-control" name="isi" value="{{ old('isi') }}"  id="article-ckeditor"></textarea>
+        <textarea class="form-control" name="isi" value="{{ old('isi') }}"  id="textarea-ckeditor"></textarea>
         @if ($errors->has( 'isi'))
             <div class="text-danger">
             <p>{{ $errors->first('isi')}}</p>

@@ -28,7 +28,7 @@
           <div class="form-group">
 
               <label for="">Isi :</label>
-            <textarea class="form-control" name="isi" id="article-ckeditor">
+            <textarea class="form-control" name="isi" id="textarea-ckeditor">
               </textarea>
 
           </div>
@@ -56,6 +56,6 @@
 @section('js')
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
     <script>
-        CKEDITOR.replace( 'article-ckeditor' );
+        CKEDITOR.replace( 'textarea-ckeditor' );
     </script>
     @append
