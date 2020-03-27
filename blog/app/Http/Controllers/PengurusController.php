@@ -9,11 +9,20 @@ use App\Masjid;
 use Session;
 class PengurusController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $roleId = auth()->user()->role()->id;
+
+    //     if($roleId != 3){
+    //         abort(403);
+    //     }
+    // }
+
     public function index()
     {
         $pengguna = DB::table('users')
-        ->Rightjoin('user_has_masjids', 'users.id', 'user_has_masjids.user_id')
-        ->join('masjid', 'user_has_masjids.masjid_id', 'masjid.id')
+        ->join('masjid', 'users.masjid_id', 'masjid.id')
         ->select([
             'users.id as id',
             'users.nama as nama',
@@ -23,6 +32,7 @@ class PengurusController extends Controller
             'users.no_telpon as no_telpon',
             'users.alamat as alamat',
             'users.jenis_kelamin as jenis_kelamin',
+            'users.gambar as gambar',
             'users.email_verified as email_verified'
         ])
         ->paginate(5);
@@ -41,7 +51,7 @@ class PengurusController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:64',
-            'gambar'    => 'required|file|max:2048',
+            'file'    => 'nullable|file|max:2048',
             'no_ktp'    => 'required|string|max:64',
             'no_telpon' => 'required|string|max:64',
             'alamat'    => 'required|string|max:255',
@@ -64,11 +74,6 @@ class PengurusController extends Controller
         $request['password'] = bcrypt($request->email);
         $user = User::Create($request->all()); 
 
-        DB::table('user_has_masjids')->insert([
-            'user_id'   =>  $user->id,
-            'masjid_id' =>  $request->masjid_id
-        ]);
-        
         $request->session()->flash('alert-success', 'Sukses Menambah Data');
         return redirect()->route('pengurus.index');
     }
@@ -77,14 +82,13 @@ class PengurusController extends Controller
     {
 
         $pengurus = DB::table('users')
-        ->join('user_has_masjids', 'users.id', 'user_has_masjids.user_id')
-        ->join('masjid', 'user_has_masjids.masjid_id', 'masjid.id')
+        ->join('masjid', 'users.masjid_id', 'masjid.id')
         ->where('users.id', $id)
         ->select([
             'users.id as id',
             'users.nama as nama',
             'masjid.nama_masjid as nama_masjid',
-            'user_has_masjids.masjid_id as masjid_id',
+            'masjid.id as masjid_id',
             'users.no_ktp as no_ktp',
             'users.email as email',
             'users.no_telpon as no_telpon',
@@ -105,7 +109,7 @@ class PengurusController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:64',
-            'gambar'    => 'nullable|file|max:2048',
+            'file'    => 'nullable|file|max:2048',
             'no_ktp'    => 'required|string|max:64',
             'no_telpon' => 'required|string|max:64',
             'alamat'    => 'required|string|max:255',
@@ -124,13 +128,9 @@ class PengurusController extends Controller
             $request['gambar'] = $gambar;
         }          
        
-        User::Where('id', $id)->update($request->except('_token', 'masjid_id')); 
+        User::Where('id', $id)->update($request->except('_token', 'file')); 
 
         $user = User::where('id', $id)->first();
-        
-        DB::table('user_has_masjids')->where('user_id', $user->id)->update([
-            'masjid_id' =>  $request->masjid_id
-        ]);
 
         $request->session()->flash('alert-success', 'Sukses Mengubah Data');
         return redirect()->route('pengurus.index');
@@ -139,8 +139,7 @@ class PengurusController extends Controller
     public function destroy(Request $request, $id)
     {
         User::where('id', $id)->delete();
-        DB::table('user_has_masjids')->where('user_id', $id)->delete();
-
+ 
         $request->session()->flash('alert-success', 'Sukses Menghapus Data');
         return redirect()->route('pengurus.index');
     }

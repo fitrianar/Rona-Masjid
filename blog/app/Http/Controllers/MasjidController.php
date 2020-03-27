@@ -8,15 +8,28 @@ use Session;
 
 class MasjidController extends Controller
 {
+   
     public function index()
     {
-        $masjid = Masjid::paginate(5);
-        return view('cms.masjid.index', compact('masjid'));
+        $roleId =  auth()->user()->role()->id;
+
+        if($roleId == 1){
+            $masjid = Masjid::paginate(5);
+            return view('cms.masjid.index', compact('masjid'));
+        }
+
+        return abort(403);
     }
 
     public function create()
     {
-        return view('cms.masjid.create');
+        $roleId =  auth()->user()->role()->id;
+
+        if($roleId == 1){
+            return view('cms.masjid.create');
+        }
+
+        return abort(403);
     }
 
     public function store(Request $request)
@@ -63,8 +76,14 @@ class MasjidController extends Controller
 
     public function edit($id)
     {
-        $masjid = Masjid::where('id', $id)->first();
-        return view('cms.masjid.edit', compact('masjid'));
+        $roleId =  auth()->user()->role()->id;
+
+        if($roleId == 1){
+            $masjid = Masjid::where('id', $id)->first();
+            return view('cms.masjid.edit', compact('masjid'));        }
+
+        return abort(403);
+     
     }
 
     public function update(Request $request, $id)

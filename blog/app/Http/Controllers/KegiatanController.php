@@ -14,7 +14,14 @@ class KegiatanController extends Controller
     }
     public function index()
     {
-        $kegiatan = Kegiatan::paginate(5);
+        $roleId = auth()->user()->role()->id;
+
+        if($roleId == 3){ //pengurus
+            $masjidId = auth()->user()->masjid()->id; 
+            $kegiatan = Kegiatan::where('masjid_id', $masjidId)->orderBy('created_at', 'desc')->paginate(5);
+        }else{
+            $kegiatan = Kegiatan::orderBy('created_at', 'desc')->paginate(5);
+        }
         return view('cms.kegiatan.index', compact('kegiatan'));
     }
 
@@ -32,7 +39,12 @@ class KegiatanController extends Controller
 
     public function create(Request $request)
     {
-        return view('cms.kegiatan.create');
+        $roleId = auth()->user()->role()->id;
+        if($roleId == 3){
+            return view('cms.kegiatan.create');
+        }
+
+        return abort(403);
     }
 
     /**

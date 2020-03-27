@@ -10,24 +10,48 @@ use DataTables;
 
 class ArtikelController extends Controller
 {
+    protected $roleId;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index()
     {
-        $articles = DB::table('artikel')->
-        Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
-        ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
-        ->select([
-            'artikel.id as id',
-            'artikel.judul as judul',
-            'artikel.gambar as gambar',
-            'artikel.isi as isi',
-            'kategori.nama as nama',
-        ])
-        ->get();
+        $roleId = auth()->user()->role()->id;
+        $articles = Array();
+        if($roleId == 3){ //pengurus
+            $masjidId = auth()->user()->masjid()->id; 
+            $articles = DB::table('artikel')->
+            Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
+            ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->select([
+                'artikel.id as id',
+                'artikel.judul as judul',
+                'artikel.gambar as gambar',
+                'artikel.isi as isi',
+                'kategori.nama as nama',
+            ])
+            ->where('artikel.masjid_id', $masjidId)
+            ->get();
+        }else{ //admin
+            $articles = DB::table('artikel')->
+            Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
+            ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->select([
+                'artikel.id as id',
+                'artikel.judul as judul',
+                'artikel.gambar as gambar',
+                'artikel.isi as isi',
+                'kategori.nama as nama',
+            ])
+            ->get();
+        }
+
+       
         $arrData = Array();
 
         foreach($articles as $article)
@@ -46,7 +70,7 @@ class ArtikelController extends Controller
             }
         }
 
-      // return $arrData;
+
         return view('cms.article.index', compact('arrData'));
     }
 
@@ -140,8 +164,14 @@ class ArtikelController extends Controller
 
     public function create(Request $request)
     {
-        $kategori = Kategori::All();
-        return view('cms.article.create', compact('kategori'));
+        $roleId = auth()->user()->role()->id; //get role id
+
+        if($roleId == 3){ //harus pengurus
+            $kategori = Kategori::All();
+            return view('cms.article.create', compact('kategori'));
+        }else{
+            abort(403);
+        }
     }
 
     /**
@@ -253,7 +283,7 @@ class ArtikelController extends Controller
         $request->validate([
             'judul'     => 'required|string|max:64',
             'gambar'      => 'nullable|file|max:2048',
-            'isi'       => 'required|string|max:255',
+            'isi'       => 'required|string|max:1000',
            
         ]);
 

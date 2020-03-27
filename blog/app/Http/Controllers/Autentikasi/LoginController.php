@@ -29,7 +29,7 @@ class LoginController extends Controller
         $check = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
         if($check){
-            return Redirect::to('/artikel');
+            return Redirect::to('/dashboard');
         }else{
             return Redirect::to('/login');
         }
