@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserHasMasjidsTable extends Migration
+class User extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateUserHasMasjidsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_has_masjids', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
+        Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('masjid_id');
-            $table->timestamps();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateUserHasMasjidsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_has_masjids');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

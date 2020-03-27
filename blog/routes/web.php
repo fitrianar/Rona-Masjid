@@ -26,9 +26,12 @@ Route::get('/registrasi', 'Autentikasi\LoginController@registrasi')->name('regis
 //CRUD Artikel
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/logout', 'Autentikasi\LoginController@logout')->name('logout');
+    Route::post('/logout', 'Autentikasi\LoginController@logout')->name('logout');
+
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::prefix('manajemen-pengguna')->group(function () {
+
 
         Route::prefix('pengurus')->group(function () {
             Route::get('/', 'PengurusController@index')->name('pengurus.index');    //nampilin list artikel table
@@ -69,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/hapus/{id}', 'ArtikelController@destroy')->name('article.delete');  //hapus data artikel
     });
 
-    Route::middleware(['operator'])->prefix('kegiatan')->group(function () {
+    Route::prefix('kegiatan')->group(function () {
         Route::get('/', 'KegiatanController@index')->name('kegiatan.index');    //nampilin list artikel table
         Route::get('/buat', 'KegiatanController@create')->name('kegiatan.create');    //nampilin form tambah artikel
         Route::post('/simpan', 'KegiatanController@store')->name('kegiatan.store');   //simpan data artikel ke db
@@ -92,14 +95,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/hapus/{id}', 'FasilitasController@destroy')->name('fasilitas.delete');  //hapus data artikel
     });
 
-    Route::prefix('profile')->group(function () {
-        Route::get('/', 'ProfileController@index')->name('profile.index');    //nampilin list artikel table
-        Route::get('/buat', 'ProfileController@create')->name('profile.create');    //nampilin form tambah artikel
-        Route::post('/simpan', 'ProfileController@store')->name('profile.store');   //simpan data artikel ke db
-        Route::get('/edit/{id}', 'ProfileController@edit')->name('profile.edit'); //nampilin form edit artikel
-        Route::post('/ubah/{id}', 'ProfileController@update')->name('profile.update');   //ubah data artikel ke db
-        Route::get('/hapus/{id}', 'ProfileController@destroy')->name('profile.delete');  //hapus data artikel
-    });
+    Route::prefix('profile-masjid')->group(function () {
+        Route::get('/', 'ProfileMasjidController@index')->name('profile-masjid.index');    //nampilin list artikel table
+        Route::post('/update/{id}', 'ProfileMasjidController@update')->name('profile-masjid.update');   //simpan data artikel ke db
+     });
 });
 
 // //Route::resource('articles', 'ArtikelController');
