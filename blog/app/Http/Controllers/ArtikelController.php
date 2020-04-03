@@ -25,8 +25,10 @@ class ArtikelController extends Controller
         $articles = Array();
         if($roleId == 3){ //pengurus
             $masjidId = auth()->user()->masjid()->id; 
-            $articles = DB::table('artikel')->
-            Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
+
+            $articles = DB::table('artikel')
+            ->where('artikel.masjid_id', $masjidId)
+            ->Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
             ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
             ->select([
                 'artikel.id as id',
@@ -35,7 +37,6 @@ class ArtikelController extends Controller
                 'artikel.isi as isi',
                 'kategori.nama as nama',
             ])
-            ->where('artikel.masjid_id', $masjidId)
             ->get();
         }else{ //admin
             $articles = DB::table('artikel')->
@@ -84,17 +85,37 @@ class ArtikelController extends Controller
             'status'
         ];
         
-        $arrData =   DB::table('artikel')->
-        Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
-        ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
-        ->select([
-            'artikel.id as id',
-            'artikel.judul as judul',
-            'artikel.gambar as gambar',
-            'artikel.isi as isi',
-            'kategori.nama as nama',
-        ])
-        ->get();
+        $roleId = auth()->user()->role()->id;
+        $arrData = Array();
+        if($roleId == 3){ //pengurus
+            $masjidId = auth()->user()->masjid()->id; 
+
+            $arrData = DB::table('artikel')
+            ->where('artikel.masjid_id', $masjidId)
+            ->Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
+            ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->select([
+                'artikel.id as id',
+                'artikel.judul as judul',
+                'artikel.gambar as gambar',
+                'artikel.isi as isi',
+                'kategori.nama as nama',
+            ])
+            ->get();
+        }else{ //admin
+            $arrData = DB::table('artikel')->
+            Join('kategori_has_artikel', 'artikel.id', 'kategori_has_artikel.artikel_id')
+            ->Join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->select([
+                'artikel.id as id',
+                'artikel.judul as judul',
+                'artikel.gambar as gambar',
+                'artikel.isi as isi',
+                'kategori.nama as nama',
+            ])
+            ->get();
+        }
+
 
         $data = Array();
 

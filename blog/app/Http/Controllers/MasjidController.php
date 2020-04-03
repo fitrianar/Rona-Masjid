@@ -36,53 +36,49 @@ class MasjidController extends Controller
     {
         $request->validate([
             'nama_masjid'   => 'required|string|max:64',
-            'gambar'        => 'required|file|max:2048',
+            'file'        => 'required|file|max:2048',
             'alamat_masjid' => 'required|string|max:255',
             'l_tanah'       => 'required|string|max:10',
             'p_tanah'       => 'required|string|max:10',
             'luas_bangunan' => 'required|string|max:64',
-            'lampiran_masjid'    => 'nullable|file|max:2048',
+            'file_lampiran'    => 'nullable|file|max:2048',
             'status_masjid' => 'required|string|max:255',
             'deskripsi'     => 'required|string|max:255'
         ]);
 
-        $gambar = null;
-        if ($request->file('gambar')) {
+        if ($request->file('file')) {
             
             $dir = 'uploads/';
             $size = '480';
             $format = '';
-            $image = $request->file('gambar');
+            $image = $request->file('file');
 
-            $gambar = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
+            $request['gambar'] = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
         }          
-        $request['gambar'] = $gambar;
 
-        $lampiran = null;
-        if ($request->file('lampiran_masjid')) {
+        if ($request->file('file_lampiran')) {
             
-            $dir = 'uploads/';
-            $fileName = $request->nama_masjid;          
-            $data = $request->file('lampiran_masjid');
-
-            $lampiran = \App\Helper\ImageUpload::pushFile($dir, $fileName, $data);                
+            $dir = 'lampiran/';
+            $image = $request->file('file_lampiran');
+            $request['lampiran_masjid'] = \App\Helper\ImageUpload::pushBerkas($dir, $image);
         }          
-        $request['lampiran_masjid'] = $lampiran;
        
-        Masjid::Create($request->All());
+        Masjid::Create($request->except('file', 'file_lampiran'));
         $request->session()->flash('alert-success', 'Sukses Menambah Data');
         return redirect()->route('masjid.index');
     }
 
     public function edit($id)
     {
+        $masjid =  Masjid::where('id', $id)->first();
         $roleId =  auth()->user()->role()->id;
 
-        if($roleId == 1){
-            $masjid = Masjid::where('id', $id)->first();
-            return view('cms.masjid.edit', compact('masjid'));        }
-
-        return abort(403);
+        if($masjid){
+            if($roleId == 1){
+                return view('cms.masjid.edit', compact('masjid')); 
+            }
+        }
+        abort(403);
      
     }
 
@@ -90,19 +86,48 @@ class MasjidController extends Controller
     {
         $request->validate([
             'nama_masjid'   => 'required|string|max:64',
-            'gambar'        => 'nullable|file|max:2048',
+            'file'        => 'nullable|file|max:2048',
             'alamat_masjid' => 'required|string|max:255',
             'l_tanah'       => 'required|string|max:64',
             'p_tanah'       => 'required|string|max:64',
             'luas_bangunan' => 'required|string|max:64',
-            'lampiran_masjid'    => 'nullable|file|max:2048',
+            'file_lampiran'    => 'nullable|file|max:2048',
             'status_masjid' => 'required|string|max:255',
             'deskripsi'     => 'required|string|max:255'
         ]);
 
-        Masjid::where('id', $id)->update($request->except('_token'));
-        $request->session()->flash('alert-success', 'Sukses Mengubah Data');
-        return redirect()->route('masjid.index');
+        $masjid = Masjid::where('id', $id)->first();
+
+        if($masjid){
+            if ($request->file('file')) {
+            
+                $dir = 'uploads/';
+                $size = '480';
+                $format = '';
+                $image = $request->file('file');
+    
+                $request['gambar'] = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
+               
+                File::delete(public_path($masjid->gambar));
+                Masjid::where('id', $id)->update($request->only('gambar'));
+            }
+
+            if($request->file('file_lampiran')){
+                $dir = 'lampiran/';
+                $image = $request->file('file_lampiran');
+                $request['lampiran_masjid'] = \App\Helper\ImageUpload::pushBerkas($dir, $image);
+                
+                File::delete(public_path($masjid->lampiran_masjid));
+    
+                Masjid::where('id', $id)->update($request->only('lampiran_masjid'));
+            }
+
+            Masjid::where('id', $id)->update($request->except('_token', 'file'));
+            $request->session()->flash('alert-success', 'Sukses Mengubah Data');
+            return redirect()->route('masjid.index');
+        }
+
+        abort(403);
 
     }
 

@@ -17,14 +17,5 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $articles = Artikel::all();
-        return view('home',compact('articles'));
-    }
+  
 }
