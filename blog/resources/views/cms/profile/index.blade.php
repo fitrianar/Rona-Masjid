@@ -9,7 +9,7 @@
 @csrf
 
     <div class="form-group ">
-        <label for="parent_id">Nama Masjid</label>
+        <label for="parent_id">Nama </label>
         <input type="text" class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" value="{{ $profile->nama }}" name="nama" required>
         @if ($errors->has('nama'))
             <div class="text-danger">
@@ -40,7 +40,7 @@
 
     <div class="form-group ">
         <label for="parent_id">Alamat</label>
-        <textarea type="text" class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}" value="{{ $profile->alamat }}" name="alamat" required>
+        <textarea type="text" class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"  name="alamat" required>{{ $profile->alamat }}</textarea>
         @if ($errors->has('alamat'))
             <div class="text-danger">
             <p>{{ $errors->first('alamat')}}</p>
@@ -50,7 +50,10 @@
 
     <div class="form-group ">
         <label for="parent_id">Jenis Kelamin</label>
-        <textarea type="text" class="form-control {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}" value="{{ $profile->jenis_kelamin }}" name="jenis_kelamin" required>
+        <select name="jenis_kelamin" class="form-control">
+            <option value="Laki-Laki" {{$profile->jenis_kelamin === 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+            <option value="Perempuan" {{$profile->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+        </select>
         @if ($errors->has('jenis_kelamin'))
             <div class="text-danger">
             <p>{{ $errors->first('jenis_kelamin')}}</p>
@@ -60,8 +63,8 @@
 
     <div class="form-group ">
         <label for="name">Foto</label><br>
-        <img src="{{ asset($profile->poster) }}" height="100px">
-        <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" value="{{ $kegiatan->file }}" type="file" name="file" >
+        <img src="{{ asset($profile->gambar) }}" height="200px">
+        <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" >
         @if ($errors->has('file'))
             <div class="text-danger">
             <p>{{ $errors->first('file')}}</p>

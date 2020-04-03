@@ -18,17 +18,25 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{asset(auth()->user()->gambar)}}" width="200"  class="img-circle" alt="User Image">
-        </div>
+      <center>
+      <img src="{{asset(auth()->user()->gambar)}}" width="150px" class="img-circle" alt="User Image">
+      </center>
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex"> -->
+        <!-- <div class="image">
+
+        </div> -->
+        <center>
         <div class="info">
-          <a href="#" class="d-block">{{ auth()->user()->nama }}</a>
+          <p class="text-white" style="margin-bottom: -6px;margin-top:10px;">Assalamualaikum, </p>
+          <h4 href="#" class="d-block text-white">{{ auth()->user()->nama }}</h4>
+          <a href="{{ route('profile-index') }}"><u>Edit Profile</u></a><br>
+          <a href="{{ route('profile-edit-password') }}"><u>Ubah Password</u></a><br>
         </div>
-      </div>
+        </center>
+      <!-- </div> -->
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2" >
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -224,7 +232,7 @@
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           @if(auth()->user()->role()->id == 3) 
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'profile') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'profile-masjid') ? 'menu-open' : ''}}">
             <a href="{{ route('profile-masjid.index') }}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p> Profile Masjid
@@ -324,8 +332,6 @@
                  Manajemen Masjid
               </p>
             </a>
-          </li>
-          @endif
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           <li class="nav-item has-treeview {{ Str::startsWith(Request::path(), 'manajemen-pengguna') ? 'menu-open' : ''}}">
@@ -350,6 +356,8 @@
               </li>
             </ul>
           </li>
+          </li>
+          @endif
           <!-- Batas Akhir -->
           <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

@@ -19,10 +19,10 @@
 
     <div class="form-group ">
         <label for="name">Gambar</label>
-        <input id="minute_length"  class="form-control {{ $errors->has('gambar') ? 'is-invalid' : '' }}" type="file" name="gambar" value="{{ old('gambar') }}" required="">
-        @if ($errors->has('gambar'))
+        <input id="minute_length" class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}" required="">
+        @if ($errors->has('file'))
             <div class="text-danger">
-            <p>{{ $errors->first('gambar')}}</p>
+            <p>{{ $errors->first('file')}}</p>
             </div>
         @endif
     </div>
@@ -69,10 +69,10 @@
 
     <div class="form-group ">
         <label for="name">Lampiran</label>
-        <input id="minute_length"  class="form-control {{ $errors->has('lampiran_masjid') ? 'is-invalid' : '' }}" type="file" name="lampiran_masjid" value="{{ old('lampiran') }}" >
-        @if ($errors->has('lampiran_masjid'))
+        <input id="minute_length"  class="form-control {{ $errors->has('file_lampiran') ? 'is-invalid' : '' }}" type="file" name="file_lampiran" value="{{ old('file_lampiran') }}" >
+        @if ($errors->has('file_lampiran'))
             <div class="text-danger">
-            <p>{{ $errors->first('lampiran_masjid')}}</p>
+            <p>{{ $errors->first('file_lampiran')}}</p>
             </div>
         @endif
     </div>
