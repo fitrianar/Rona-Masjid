@@ -15,4 +15,9 @@ class Kategori extends Model
         'id',
         'nama'
     ];
+
+    public static function kategoriSidebar()
+    {
+        return Kategori::orderBy('created_at', 'desc')->take(5)->get(); 
+    }
 }
