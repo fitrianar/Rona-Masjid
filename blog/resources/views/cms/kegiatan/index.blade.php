@@ -25,8 +25,8 @@
       <td>{{ $kgtn->nama }}</td>
       <td>{{ $kgtn->tgl_dilaksanakan }}</td>
       <td>{{ $kgtn->jam_dimulai }} s/d {{ $kgtn->jam_akhir }} </td>
-      @if(strlen($kgtn->deskripsi_kegiatan) > 50)
-        <td>{!! substr($kgtn->deskripsi_kegiatan, 0, 50) . '...' !!}</td>
+      @if(strlen($kgtn->deskripsi_kegiatan) > 500)
+        <td>{!! substr($kgtn->deskripsi_kegiatan, 0, 500) . '...' !!}</td>
       @else
         <td>{!! $kgtn->deskripsi_kegiatan !!}</td>
       @endif
