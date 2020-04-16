@@ -29,6 +29,9 @@
 	<!-- Library -->
     <link href="{{ asset('public-page/assets/css/lib.css') }}" rel="stylesheet">
 	
+	<!-- SweetAlert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+	
 	<!-- Custom - Common CSS -->
 	<link rel="stylesheet" href="{{ asset('public-page/assets/css/rtl.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public-page/style.css') }}">
@@ -87,7 +90,7 @@
 	
 	<!-- Library - Theme JS -->
 	<script src="{{ asset('public-page/assets/js/functions.js') }}"></script>
-	
+	@stack('script')
 </body>
 
 </html>

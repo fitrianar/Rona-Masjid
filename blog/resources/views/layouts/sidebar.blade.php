@@ -19,8 +19,8 @@
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <center>
-      <img src="{{asset(auth()->user()->gambar)}}" width="150px" class="img-circle" alt="User Image">
-      </center>
+      <img src="{{asset(auth()->user()->gambar)}}" width="150" height='150' class="img-circle" alt="User Image">
+      </center>]
       <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex"> -->
         <!-- <div class="image">
 
@@ -221,7 +221,7 @@
             </ul>
           </li> -->
           <!-- Batas Awal -->
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'dashboard') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/dashboard') ? 'menu-open' : ''}}">
             <a href="{{ route('dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -232,7 +232,7 @@
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           @if(auth()->user()->role()->id == 3) 
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'profile-masjid') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/profile-masjid') ? 'menu-open' : ''}}">
             <a href="{{ route('profile-masjid.index') }}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p> Profile Masjid
@@ -242,7 +242,8 @@
           @endif
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'artikel') ? 'menu-open' : ''}}">
+
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/artikel') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -252,14 +253,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('article.index') }}" class="nav-link {{ url()->current()==url('/artikel') ? 'active' : '' }}">
+                <a href="{{ route('article.index') }}" class="nav-link {{ url()->current()==url('adminpanel/artikel') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Index</p>
                 </a>
               </li>
               @if(auth()->user()->role()->id == 3) 
               <li class="nav-item">
-                <a href="{{ route('article.create') }}" class="nav-link {{ url()->current()==url('/artikel/buat') ? 'active' : ''}}">
+                <a href="{{ route('article.create') }}" class="nav-link {{ url()->current()==url('adminpanel/artikel/buat') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Baru</p>
                 </a>
@@ -269,7 +270,7 @@
           </li>
           <!-- Batas Akhir -->
            <!-- Batas Awal -->
-           <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'kegiatan') ? 'menu-open' : ''}}">
+           <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/kegiatan') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>
@@ -279,14 +280,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('kegiatan.index') }}" class="nav-link {{ url()->current()==url('/kegiatan') ? 'active' : '' }}">
+                <a href="{{ route('kegiatan.index') }}" class="nav-link {{ url()->current()==url('adminpanel/kegiatan') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Index</p>
                 </a>
               </li>
               @if(auth()->user()->role()->id == 3) 
               <li class="nav-item">
-                <a href="{{ route('kegiatan.create') }}" class="nav-link {{ url()->current()==url('/kegiatan/buat') ? 'active' : ''}}">
+                <a href="{{ route('kegiatan.create') }}" class="nav-link {{ url()->current()==url('adminpanel/kegiatan/buat') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Baru</p>
                 </a>
@@ -297,7 +298,7 @@
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           @if(auth()->user()->role()->id == 3)
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'fasilitas') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/fasilitas') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
@@ -307,13 +308,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('fasilitas.index') }}" class="nav-link {{ url()->current()==url('/fasilitas') ? 'active' : '' }}">
+                <a href="{{ route('fasilitas.index') }}" class="nav-link {{ url()->current()==url('adminpanel/fasilitas') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Index</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('fasilitas.create') }}" class="nav-link {{ url()->current()==url('/fasilitas/buat') ? 'active' : ''}}">
+                <a href="{{ route('fasilitas.create') }}" class="nav-link {{ url()->current()==url('adminpanel/fasilitas/buat') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Baru</p>
                 </a>
@@ -325,7 +326,7 @@
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           @if(auth()->user()->role()->id == 1)
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'masjid') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/masjid') ? 'menu-open' : ''}}">
             <a href="{{ route('masjid.index') }}" class="nav-link">
               <i class="fas fa-mosque"></i> 
               <p>
@@ -334,7 +335,7 @@
             </a>
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
-          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(), 'manajemen-pengguna') ? 'menu-open' : ''}}">
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(), 'adminpanel/manajemen-pengguna') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link">
             <i class="fa fa-users" aria-hidden="true"></i>              <p>
                 Manajemen Pengguna
@@ -343,13 +344,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('pengurus.index') }}" class="nav-link {{ url()->current()==url('/manajemen-pengguna/pengurus') ? 'active' : '' }}">
+                <a href="{{ route('pengurus.index') }}" class="nav-link {{ url()->current()==url('adminpanel/manajemen-pengguna/pengurus') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pengurus</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('member.index') }}" class="nav-link {{ url()->current()==url('/manajemen-pengguna/member') ? 'active' : ''}}">
+                <a href="{{ route('member.index') }}" class="nav-link {{ url()->current()==url('adminpanel/manajemen-pengguna/member') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Member</p>
                 </a>

@@ -21,7 +21,7 @@
     <div class="form-group ">
         <label for="name">Upload Foto</label><br>
         <img src="{{ asset($fasilitas->foto) }}" height="100px">
-        <input id="minute_length"  class="form-control" type="file" name="foto" >
+        <input id="minute_length"  class="form-control" type="file" name="file" >
     </div>
 
     <!-- 

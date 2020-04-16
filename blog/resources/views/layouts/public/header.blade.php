@@ -11,7 +11,7 @@
                      
                     </div>
                     <div class="col-lg-4 logo-block">
-                        <a href="index.html" title="Logo">{{ $appName }}</a>
+                        <img src="{{ asset('img/logo.png') }}" height='200px' weight='200px' style="margin-top:-50px; margin-bottom:-80px;">
                     </div>
                     <div class="col-lg-4 col-6">
                         <ul class="top-right user-info">
@@ -24,11 +24,12 @@
                                 <i class="pe-7s-user"></i></a>
                                 <ul class="dropdown-menu">
                                 @if(auth()->user())
+                                <li><a class="dropdown-item" href="{{ route('dashboard') }}" title="Sign In">Masuk CMS</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout-v2') }}" title="Sign In">Keluar</a></li>
 
                                 @else
                                 <li><a class="dropdown-item" href="{{ route('login') }}" title="Sign In">Masuk Login</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('registrasi') }}" title="Log In">Registrasi</a></li>
+                                    <!-- <li><a class="dropdown-item" href="{{ route('registrasi') }}" title="Log In">Registrasi</a></li> -->
                                 @endif
                                 </ul>
                             </li>
@@ -44,7 +45,7 @@
         <!-- Container -->
         <div class="container">				
             <nav class="navbar ownavigation navbar-expand-lg">
-                <a class="navbar-brand" href="index.html">{{ $appName }}</a>
+                <a class="navbar-brand" href="index.html"><img src="{{ asset('img/logo.png') }}" height='100px' weight='100px' style="margin-top:-50px; margin-bottom:-80px;"></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>

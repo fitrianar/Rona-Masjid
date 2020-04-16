@@ -21,12 +21,12 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><img src="{{ asset('img/logo.png') }}" height='200px' weight='200px' style="margin-top:-50px; margin-bottom:-50px;"></a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Registrasi Pengurus Baru</p>
 
       <form action="{{ route('registrasi-store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -161,7 +161,7 @@
         </a>
       </div> -->
 
-      <a href="login.html" class="text-center">Sudah mempunyai akun? login disini</a>
+      <a href="{{ route('login') }}" class="text-center">Sudah mempunyai akun? login disini</a>
       <a href="login.html" class="text-center">Daftar Sebagai Pengurus?</a>
     </div>
     <!-- /.form-box -->

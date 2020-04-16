@@ -20,7 +20,7 @@
 
     <div class="form-group ">
         <label for="parent_id">Tanggal Dilaksanakan</label>
-        <input type="text" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" value="{{ $kegiatan->tgl_dilaksanakan }}" name="tgl_dilaksanakan" required>
+        <input type="date" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" value="{{ $kegiatan->tgl_dilaksanakan }}" name="tgl_dilaksanakan" required>
         @if ($errors->has('tgl_dilaksanakan'))
             <div class="text-danger">
             <p>{{ $errors->first('tgl_dilaksanakan')}}</p>
@@ -50,7 +50,7 @@
 
     <div class="form-group ">
         <label for="name">Deskripsi Kegiatan</label>
-        <textarea class="form-control {{ $errors->has('deskripsi_kegiatan') ? 'is-invalid' : '' }}" name="deskripsi_kegiatan" id="kegiatan-ckeditor">{{ $kegiatan->deskripsi_kegiatan }}</textarea>
+        <textarea class="form-control {{ $errors->has('deskripsi_kegiatan') ? 'is-invalid' : '' }}" name="deskripsi_kegiatan" id="textarea-ckeditor">{{ $kegiatan->deskripsi_kegiatan }}</textarea>
         @if ($errors->has('deskripsi_kegiatan'))
             <div class="text-danger">
             <p>{{ $errors->first('deskripsi_kegiatan')}}</p>

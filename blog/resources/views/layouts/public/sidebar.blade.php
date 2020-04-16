@@ -38,8 +38,9 @@
 									<i class="ion-ios-email-outline"></i>
 									<h4>Masukan Email Anda untuk Berlangganan Gratis</h4>
 									<p>dapatkan informasi terbaru tentang masjid di platform kami</p>
-									<form>
-										<input type="text" class="form-control" placeholder="Alamat Email Anda" />
+									<form class="form-submit" action="{{ route('berlangganan-store') }}" method="POST">
+										@csrf
+										<input type="text" class="form-control" name="email" required placeholder="Alamat Email Anda" />
 										<input type="submit" value="Berlangganan Sekarang" />
 									</form>
 								</div>
@@ -167,3 +168,43 @@
 								</div>	
 							</aside><!-- Widget : Advertise /- -->
                         </div>
+
+@push('script')
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+<script>
+ $(".form-submit").submit(function(e) {
+
+e.preventDefault(); // avoid to execute the actual submit of the form.
+
+var form = $(this);
+var url = form.attr('action');
+var method = form.attr('method') != "POST" ? "POST" : form.attr('method');
+
+$.ajax({
+	type: method,
+	url: url,
+	data: form.serialize(),
+	success: function(data) 
+	{
+		swal(
+		    "Sukses Subscribe", "anda akan mendapatkan informasi terbaru lainnya", "success"
+		).then(function() {
+			location.reload();
+		});
+	},
+	error: function(xhr) {
+		var res = xhr.responseJSON;
+		if ($.isEmptyObject(res) == false) {
+			$.each(res.errors, function(key, value) {
+
+					jQuery("[name=" + key + "]").addClass(' is-invalid').after('<div class="text-danger"><strong>' + value + '</strong></div>');
+					jQuery("[name=" + key + "]").parent().parent().addClass('has-error');
+		
+			});
+		}
+	}
+});
+});
+</script>
+@endpush
