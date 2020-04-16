@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fasilitas;
+use File;
 
 class FasilitasController extends Controller
 {
@@ -45,24 +46,20 @@ class FasilitasController extends Controller
 
         $request->validate([
             'nama' => 'required|string|max:64',
-        ]);
+            'jenis_fasilitas' => 'required|string|max:64',
+            'file' => 'nullable|file|max:2048'
+        ]); 
 
-        $gambar = null;
-        if ($request->file('file')) {
-            
+        if($request->file('file')){
             $dir = 'uploads/';
-            $size = '480';
-            $format = '';
             $image = $request->file('file');
+            $request['foto'] = \App\Helper\ImageUpload::pushBerkas($dir, $image);
+        }
 
-            $gambar = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
-        }  
-        
-        $request['foto'] = $gambar;
         $request['tgl_ditambah'] = now();
         $request['user_id'] = auth()->user()->id;
         $request['masjid_id'] = auth()->user()->masjid()->id;
-        fasilitas::Create($request->all());  //ini cara cepat buat insert ke db semua formnya
+        fasilitas::Create($request->except('file', '_token'));  //ini cara cepat buat insert ke db semua formnya
        
 
         $request->session()->flash('alert-success', 'Sukses Menambah Data');
@@ -106,26 +103,22 @@ class FasilitasController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:64',
+            'jenis_fasilitas'=> 'required|string|max:64',
+            'file'      => 'nullable|file|max:2048'
         ]);
 
-        $gambar = $request->file('foto');
-
-        if($gambar){
-            $name = $gambar->getClientOriginalName();
-            $dist = 'uploads/';
-            $nameExp = explode('.', $name);
-            $nameActExp = strtolower(end($nameExp));
-            $newName = uniqid( '', true).'.'.$nameActExp;
-            $upload = $gambar->move($dist, $newName);
-            $request['foto'] = $dist.$newName;
-
-            Fasilitas::where('id', $id)->update($request->except('_token'));
-        }else{
-            Fasilitas::where('id', $id)->update($request->except('_token'));
+        $fasilitas = Fasilitas::where('id', $id)->first();
+        if($fasilitas){
+            if($request->file('file')){
+                $dir = 'uploads/';
+                $image = $request->file('file');
+                $request['foto'] = \App\Helper\ImageUpload::pushBerkas($dir, $image);
+                File::delete(public_path($fasilitas->foto));
+                Fasilitas::where('id', $id)->update($request->except('_token', 'file'));
+            }else{
+                Fasilitas::where('id', $id)->update($request->except('_token', 'file'));
+            }
         }
-
-       // DB::table('artikel')->insert($request->All); //query builder
-
        $request->session()->flash('alert-success', 'Sukses Mengubah Data');
         return redirect()->route('fasilitas.index');
     }

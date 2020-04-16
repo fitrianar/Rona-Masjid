@@ -7,6 +7,7 @@ use App\Artikel, App\Kategori;
 use Illuminate\Support\Facades\DB;
 use Session;
 use DataTables;
+use File;
 
 class ArtikelController extends Controller
 {
@@ -148,7 +149,13 @@ class ArtikelController extends Controller
         }) 
         ->editColumn('isi',
             function ($data){
-                return $data['isi'];
+                if(strlen($data['isi']) > 200){
+          return  substr($data['isi'], 0, 200) . '...';
+                }
+                else{
+                   return  $data['isi'];
+                }
+              
         }) 
         ->editColumn('kategori',
             function ($data){
@@ -302,26 +309,25 @@ class ArtikelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul'     => 'required|string|max:64',
-            'gambar'      => 'nullable|file|max:2048',
-            'isi'       => 'required|string|max:1000',
+            'judul'     => 'required|string|max:150',
+            'file'      => 'nullable|file|max:2048',
+            'isi'       => 'required|string|max:3000',
            
         ]);
 
-        $gambar = $request->file('gambar');
+        $artikel = Artikel::where('id', $id)->first();
+        if($artikel){
+            if($request->file('file')){
+                $dir = 'uploads/';
+                $image = $request->file('file');
+                $request['gambar'] = \App\Helper\ImageUpload::pushBerkas($dir, $image);
+                
+                File::delete(public_path($artikel->gambar));
 
-        if($gambar){
-            $name = $gambar->getClientOriginalName();
-            $dist = 'uploads/';
-            $nameExp = explode('.', $name);
-            $nameActExp = strtolower(end($nameExp));
-            $newName = uniqid( '', true).'.'.$nameActExp;
-            $upload = $gambar->move($dist, $newName);
-            $request['gambar'] = $dist.$newName;
-
-            Artikel::where('id', $id)->update($request->except('_token', 'kategori'));
-        }else{
-            Artikel::where('id', $id)->update($request->except('_token', 'kategori'));
+                Artikel::where('id', $id)->update($request->except('_token', 'kategori', 'file'));
+            }else{
+                Artikel::where('id', $id)->update($request->except('_token', 'kategori', 'file'));
+            }
         }
 
         if($request->has('kategori')){

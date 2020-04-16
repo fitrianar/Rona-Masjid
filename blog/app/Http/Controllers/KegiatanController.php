@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kegiatan;
+use File;
 
 class KegiatanController extends Controller
 {
@@ -57,11 +58,11 @@ class KegiatanController extends Controller
     {
 
         $request->validate([
-            'nama' => 'required|string|max:64',
+            'nama' => 'required|string|max:150',
             'tgl_dilaksanakan' => 'required',
             'jam_dimulai' => 'required',
             'jam_akhir' => 'required',
-            'deskripsi_kegiatan' => 'required|string|max:1000'
+            'deskripsi_kegiatan' => 'required|string|max:5000'
         ]);
 
         $gambar = null;
@@ -122,27 +123,30 @@ class KegiatanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:64',
+            'nama' => 'required|string|max:150',
             'tgl_dilaksanakan' => 'required',
             'jam_dimulai' => 'required',
             'jam_akhir' => 'required',
-            'deskripsi_kegiatan' => 'required|string|max:1000'
+            'deskripsi_kegiatan' => 'required|string|max:5000'
         ]);
 
-        $gambar = $request->file('poster');
-
+        $gambar = Kegiatan::where('id', $id)->first();
         if($gambar){
-            $name = $gambar->getClientOriginalName();
-            $dist = 'uploads/';
-            $nameExp = explode('.', $name);
-            $nameActExp = strtolower(end($nameExp));
-            $newName = uniqid( '', true).'.'.$nameActExp;
-            $upload = $gambar->move($dist, $newName);
-            $request['poster'] = $dist.$newName;
+            if($request->file('file')){
+                // $name = $gambar->getClientOriginalName();
+                $dist = 'uploads/';
+                // $nameExp = explode('.', $name);
+                // $nameActExp = strtolower(end($nameExp));
+                // $newName = uniqid( '', true).'.'.$nameActExp;
+                // $upload = $gambar->move($dist, $newName);
+                // $request['poster'] = $dist.$newName;
+                $upload = $request->file('file');
+                $request['poster'] = \App\Helper\ImageUpload::pushBerkas($dist, $upload);
 
-            Kegiatan::where('id', $id)->update($request->except('_token'));
-        }else{
-            Kegiatan::where('id', $id)->update($request->except('_token'));
+                Kegiatan::where('id', $id)->update($request->except('_token', 'file'));
+            }else{
+                Kegiatan::where('id', $id)->update($request->except('_token', 'file'));
+            }
         }
 
        // DB::table('artikel')->insert($request->All); //query builder

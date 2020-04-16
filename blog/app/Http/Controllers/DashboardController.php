@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kegiatan, App\Artikel, App\User, App\Masjid;
+use App\Kegiatan, App\Artikel, App\User, App\Masjid, App\Berlangganan;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -16,7 +16,7 @@ class DashboardController extends Controller
         if($roleId == 1){ //role admin
             $jmlArtikel = Artikel::count();
             $jmlPengurus = User::where('role_akses_id', '3')->count();
-            $jmlMember  = User::where('role_akses_id', '4')->count();
+            $jmlMember  = Berlangganan::count();
             $jmlMasjid  = Masjid::count();
 
             return view('cms.dashboard.index-admin', compact('jmlArtikel','jmlPengurus', 'jmlMember', 'jmlMasjid'));
