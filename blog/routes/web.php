@@ -14,7 +14,7 @@
 
 
 //routing buat user
-Route::get('/', 'HomeController@index')->name('home-index');
+Route::get('/', 'HomePageController@index')->name('index');
 
 Route::prefix('masjid')->group(function () {
 
@@ -47,6 +47,8 @@ Route::prefix('kegiatan')->group(function () {
 
 Route::get('/login', 'Autentikasi\LoginController@login')->name('login');
 Route::post('/login-masuk', 'Autentikasi\LoginController@loginMasuk')->name('login-masuk');
+Route::get('/registrasi', 'Autentikasi\LoginController@registrasi')->name('registrasi');
+Route::post('/registrasi-store', 'Autentikasi\LoginController@storeRegistrasi')->name('registrasi-store');
 
 //selesai
 
@@ -60,6 +62,7 @@ Route::prefix('adminpanel')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::post('/logout', 'Autentikasi\LoginController@logout')->name('logout');
+        Route::get('/logou-v2', 'Autentikasi\LoginController@logout')->name('logout-v2');
 
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
