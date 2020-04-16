@@ -204,9 +204,9 @@ class ArtikelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul'     => 'required|string|max:64',
+            'judul'     => 'required|string|max:150',
             'file'      => 'required|file|max:2048',
-            'isi'       => 'required|string|max:255'
+            'isi'       => 'required|string|max:3000'
         ]);
 
         $gambar = null;

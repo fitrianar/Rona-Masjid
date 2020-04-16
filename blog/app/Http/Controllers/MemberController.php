@@ -27,6 +27,7 @@ class MemberController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:64',
+            'email'     => 'required|email|max:150|unique:users,email',   
             'gambar'    => 'required|file|max:2048',
             'no_ktp'    => 'required|string|max:64',
             'no_telpon' => 'required|string|max:64',
@@ -43,7 +44,8 @@ class MemberController extends Controller
             $image = $request->file('file');
 
             $gambar = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
-        }          
+        }        
+        $request['masjid_id'] = '0';  
         $request['gambar'] = $gambar;
         $request['email_verified'] = now();
         $request['role_akses_id'] = '4'; //member
