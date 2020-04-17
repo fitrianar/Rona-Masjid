@@ -15,6 +15,24 @@
 
 //routing buat user
 Route::get('/', 'HomePageController@index')->name('index');
+Route::get('/tentang-kami', 'HomePageController@tentangKami')->name('tentang-kami');
+Route::get('/kontak', 'HomePageController@kontak')->name('kontak');
+Route::post('/subscribe', 'BerlanggananController@store')->name('berlangganan-store');
+
+Route::prefix('kegiatan')->group(function () { //belum
+    Route::get('/', 'HomePageController@kegiatanIndex')->name('public-kegiatan');
+    Route::get('/detail/{id}', 'HomePageController@kegiatanDetail')->name('public-detail-kegiatan');
+});
+
+Route::prefix('artikel')->group(function () { //belum
+    Route::get('/', 'HomePageController@artikelIndex')->name('public-kegiatan');
+    Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-kegiatan');
+});
+
+Route::prefix('masjid')->group(function () { //belum
+    Route::get('/', 'HomePageController@masjidIndex')->name('public-masjid');
+    Route::get('/detail/{id}', 'HomePageController@masjidDetail')->name('public-detail-masjid');
+});
 
 Route::prefix('masjid')->group(function () {
 
@@ -24,15 +42,6 @@ Route::prefix('masjid')->group(function () {
     Route::get('/{id}/artikel', 'HomeMasjidController@artikel')->name('home-masjid-artikel');
     Route::get('/{id}/fasilitas', 'HomeMasjidController@fasilitas')->name('home-masjid-fasilitas');
     Route::get('/{id}/pengurus', 'HomeMasjidController@pengurus')->name('home-masjid-pengurus');
-
-});
-
-Route::prefix('artikel')->group(function () {
-
-    Route::get('/detail', 'HomeArtikelController@index')->name('home-artikel-index');
-    Route::get('/detail/{id}', 'HomeArtikelController@detailArtikel')->name('home-artikel-detail');
-    Route::post('/like/{id}', 'HomeArtikelController@detailArtikel')->name('home-artikel-detail');
-    Route::get('/detail/cari', 'HomeArtikelController@cari')->name('home-artikel-index');
 
 });
 
@@ -74,7 +83,6 @@ Route::prefix('adminpanel')->group(function () {
         });
 
         Route::middleware(['admin'])->prefix('manajemen-pengguna')->group(function () {
-
 
             Route::prefix('pengurus')->group(function () {
                 Route::get('/', 'PengurusController@index')->name('pengurus.index');    //nampilin list artikel table
