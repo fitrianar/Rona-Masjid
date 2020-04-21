@@ -17,20 +17,21 @@
 Route::get('/', 'HomePageController@index')->name('index');
 Route::get('/tentang-kami', 'HomePageController@tentangKami')->name('tentang-kami');
 Route::get('/kontak', 'HomePageController@kontak')->name('kontak');
+Route::post('/tambah-kontak', 'HomePageController@storeKontak')->name('store-kontak');
 Route::post('/subscribe', 'BerlanggananController@store')->name('berlangganan-store');
 
 Route::prefix('kegiatan')->group(function () { //belum
-    Route::get('/', 'HomePageController@kegiatanIndex')->name('public-kegiatan');
+    Route::get('/', 'HomePageController@kegiatanIndex')->name('public-kegiatan-index');
     Route::get('/detail/{id}', 'HomePageController@kegiatanDetail')->name('public-detail-kegiatan');
 });
 
 Route::prefix('artikel')->group(function () { //belum
-    Route::get('/', 'HomePageController@artikelIndex')->name('public-kegiatan');
-    Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-kegiatan');
+    Route::get('/', 'HomePageController@artikelIndex')->name('public-artikel-index');
+    Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-artikel');
 });
 
 Route::prefix('masjid')->group(function () { //belum
-    Route::get('/', 'HomePageController@masjidIndex')->name('public-masjid');
+    Route::get('/', 'HomePageController@masjidIndex')->name('public-masjid-index');
     Route::get('/detail/{id}', 'HomePageController@masjidDetail')->name('public-detail-masjid');
 });
 
@@ -57,7 +58,7 @@ Route::prefix('kegiatan')->group(function () {
 Route::get('/login', 'Autentikasi\LoginController@login')->name('login');
 Route::post('/login-masuk', 'Autentikasi\LoginController@loginMasuk')->name('login-masuk');
 Route::get('/registrasi', 'Autentikasi\LoginController@registrasi')->name('registrasi');
-Route::post('/registrasi-store', 'Autentikasi\LoginController@storeRegistrasi')->name('registrasi-store');
+Route::post('/registrasi-pengurus-store', 'Autentikasi\LoginController@storeRegistrasiPengurus')->name('registrasi-pengurus-store');
 
 //selesai
 
