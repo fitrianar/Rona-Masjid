@@ -28,7 +28,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Registrasi Pengurus Baru</p>
 
-      <form action="{{ route('registrasi-store') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('registrasi-pengurus-store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="input-group mb-3">
           <input type="text" class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" placeholder="Full name" name="nama" value="{{ old('nama') }}">
@@ -44,94 +44,50 @@
               </div>  
           @endif
         </div>
-        <div class="input-group mb-3">
-          <input type="file" class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}"  placeholder="Gambar" name="file">
+        <div class="form-group ">
+          <label for="name">Pilih Masjid</label>
+          <select class="form-control" name="masjid_id">
+            <option selected hidden value="">--Pilih Masjid--</option>
+              @forelse($masjid as $msj)
+              <option value="{{ $msj->id }}">{{ $msj->nama_masjid }}</option>
+              @empty
+            <option value="" selected hidden>data kosong</option>
+              @endforelse
+          </select>
+        </div>
+        <div class="form-group ">
+          <label for="name">Gambar</label>
+          <input id="minute_length"  class="form-control" type="file" name="file" required="">
+        </div>
          
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-file"></span>
-            </div>
-          </div>
-          @if ($errors->has('file'))
-              <div class="text-danger">
-              <p>{{ $errors->first('file')}}</p>
-              </div>
-          @endif
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') }}">
-     
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-          @if ($errors->has('email'))
-              <div class="text-danger">
-              <p>{{ $errors->first('email')}}</p>
-              </div>
-          @endif
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control {{ $errors->has('no_telpon') ? 'is-invalid' : '' }}" placeholder="No Telepon" name="no_telpon" value="{{ old('no_telpon') }}">
-         
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-number"></span>
-            </div>
-          </div>
-          @if ($errors->has('no_telpon'))
-              <div class="text-danger">
-              <p>{{ $errors->first('no_telpon')}}</p>
-              </div>
-          @endif
-        </div>
-        <div class="input-group mb-3">
-        <select name="jenis_kelamin" class="form-control {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}">
-          <option selected hidden >-- Pilih Jenis Kelamin --</option>
-          <option value="Laki-Laki" {{ old('jenis_kelamin') === 'Laki-Laki' ? 'selected' : ''  }}>Laki-Laki</option>
-          <option value="Perempuan" {{ old('jenis_kelamin') === 'Perempuan' ? 'selected' : ''  }}>Perempuan</option>
+        <div class="form-group ">
+        <label for="name">No KTP</label></label>
+        <input type="number" class="form-control" name="no_ktp" required/>
+    </div>
+
+    <div class="form-group ">
+        <label for="name">Email</label>
+        <input type="text" class="form-control" name="email" required/>
+    </div>
+
+    <div class="form-group ">
+        <label for="name">No Telepon</label>
+        <input type="text" class="form-control" name="no_telpon"/>
+    </div>
+
+    <div class="form-group ">
+        <label for="name">Alamat</label>
+        <textarea class="form-control" cols="4" name="alamat" required placeholer="isi alamat"></textarea>
+    </div>
+
+    <div class="form-group ">
+        <label for="name">Jenis Kelamin</label>
+        <select class="form-control" name="jenis_kelamin">
+            <option selected hidden value="">--Pilih Jenis Kelamin--</option>
+            <option value="Laki-Laki">Laki-Laki</option>
+            <option value="Perempuan">Perempuan</option>
         </select>
-      
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-number"></span>
-            </div>
-          </div>
-          @if ($errors->has( 'jenis_kelamin'))
-            <div class="text-danger">
-            <p>{{ $errors->first('jenis_kelamin')}}</p>
-            </div>
-        @endif
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Password" name="password">
-
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-          @if ($errors->has('password'))
-              <div class="text-danger">
-              <p>{{ $errors->first('password')}}</p>
-              </div>
-          @endif
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control {{ $errors->has('password_confirm') ? 'is-invalid' : '' }}" placeholder="Retype password" name="password_confirm">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-          @if ($errors->has('password_confirm'))
-              <div class="text-danger">
-              <p>{{ $errors->first('password_confirm')}}</p>
-              </div>
-          @endif
-
-        </div>
+    </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

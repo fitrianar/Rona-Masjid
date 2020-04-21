@@ -45,7 +45,7 @@
               <div class="inner">
                 <h3>{{ $jmlMember }}</h3>
 
-                <p>Jumlah Member</p>
+                <p>Jumlah Berlangganan</p>
               </div>
               <div class="icon">
                 <i class= "fas fa-user-tag"></i>

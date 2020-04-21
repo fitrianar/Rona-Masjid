@@ -349,12 +349,12 @@
                   <p>Pengurus</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="{{ route('member.index') }}" class="nav-link {{ url()->current()==url('adminpanel/manajemen-pengguna/member') ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Member</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           </li>

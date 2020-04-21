@@ -44,13 +44,16 @@
         serverSide:true,
         ajax: "{{ route('article.datatables') }}",
         columns:[
-            {data: 'DT_RowIndex', name:'judul', searchable: false},
+            {data: 'DT_RowIndex', name:'created_at', searchable: false},
             {data: 'judul', name:'judul'},
             {data: 'gambar', name:'gambar'},
             {data: 'isi', name:'isi'},
             {data: 'kategori', name:'kategori'},
             {data: 'action', name:'action'},              
-        ]
+        ],
+        order: [
+          1, 'desc'
+      ]
     });
 </script>
 @endpush 

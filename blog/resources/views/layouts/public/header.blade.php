@@ -51,17 +51,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbar1">
                     <ul class="navbar-nav">							
-                        <li class="dropdown">
-                            <a class="nav-link" title="Home" href="index.html">Beranda</a>
+                        <li class="{{ Str::startsWith(Request::path(), '/') ? 'active' : ''}} dropdown">
+                            <a class="nav-link" title="Home" href="{{ route('index') }}">Beranda</a>
                         </li>
-                        <li class="active dropdown">
-                            <a class="nav-link" title="Posts" href="#">Kegiatan</a>
+                        <li class="{{ Str::startsWith(Request::path(),'kegiatan') ? 'active' : ''}} dropdown">
+                            <a class="nav-link" title="Posts" href="{{ route('public-kegiatan-index') }}">Kegiatan</a>
                         </li>
-                        <li class="dropdown">
+                        <li class="{{ Str::startsWith(Request::path(),'artikel') ? 'active' : ''}} dropdown">
                             <i class="ddl-switch fa fa-angle-down"></i>
                             <a class="nav-link dropdown-toggle" title="Pages" href="#">Artikel</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="header-page.html" title="Header">Lihat Artikel</a></li>
+                                <li><a class="dropdown-item" href="{{ route('public-artikel-index') }}" title="Header">Lihat Artikel</a></li>
                                 <li class="dropdown">
 										<i class="ddl-switch fa fa-angle-down"></i>
 										<a class="dropdown-item dropdown-toggle" href="index-2.html" title="Home 2">Kategori</a>
@@ -80,10 +80,10 @@
 									</li>                          
                             </ul>
                         </li>
-                        <li><a class="nav-link" title="Features" href="#">Daftar Masjid</a></li>
-                        <li><a class="nav-link" title="Contact" href="contact-us.html">Tentang Kami</a></li>
+                        <li class="{{ Str::startsWith(Request::path(),'masjid') ? 'active' : ''}}"><a class="nav-link" title="Features" href="{{ route('public-masjid-index') }}">Daftar Masjid</a></li>
+                        <li class="{{ Str::startsWith(Request::path(),'tentang-kami') ? 'active' : ''}}"><a class="nav-link" title="Contact" href="contact-us.html">#Tentang Kami</a></li>
 
-                        <li><a class="nav-link" title="Archives" href="#">Kontak</a></li>
+                        <li class="{{ Str::startsWith(Request::path(),'kontak') ? 'active' : ''}}"><a class="nav-link" title="Archives" href="{{ route('kontak') }}">Kontak</a></li>
                     
                     </ul>
                 </div>

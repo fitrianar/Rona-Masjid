@@ -68,6 +68,9 @@
 
   $(document).ready(function () {
       $('#kategori').select2({
+       // closeOnSelect: false,
+
+          
           ajax: {
               url: "{{  route('kategori-fetch')  }}",
               data: function (params) {

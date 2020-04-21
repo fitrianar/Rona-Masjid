@@ -46,7 +46,7 @@
 								</div>
 							</aside><!-- Widget : Newsletter /- -->
 							<!-- Widget : Tags -->
-							<aside class="widget widget_tags_cloud">
+							<!-- <aside class="widget widget_tags_cloud">
 								<h3 class="widget-title">Tags</h3>
 								<div class="tagcloud">
 									<a href="#" title="Fashion">Fashion</a>
@@ -59,9 +59,10 @@
 									<a href="#" title="Lifestyle">Lifestyle</a>
 									<a href="#" title="Gear">Gear</a>
 								</div>
-							</aside><!-- Widget : Tags /- -->
+							</aside> -->
+							<!-- Widget : Tags /- -->
 							<!-- Widget : Categories -->
-							<aside class="widget widget_categories2">
+							<!-- <aside class="widget widget_categories2">
 								<h3 class="widget-title">Categories</h3>
 								<div class="categories-box">
 									<ul>
@@ -91,9 +92,10 @@
 										</li>
 									</ul>
 								</div>
-							</aside><!-- Widget : Categories /- -->
+							</aside> -->
+							<!-- Widget : Categories /- -->
 							<!-- Widget : Tranding Post -->
-							<aside class="widget widget_tranding_post">
+							<!-- <aside class="widget widget_tranding_post">
 								<h3 class="widget-title">TRENDING Posts</h3>
 								<div id="trending-widget" class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">
@@ -125,9 +127,10 @@
 										<li data-target="#trending-widget" data-slide-to="2"></li>
 									</ol>
 								</div>
-							</aside><!-- Widget : Tranding Post /- -->
+							</aside> -->
+							<!-- Widget : Tranding Post /- -->
 							<!-- Widget : Advertise -->
-							<aside class="widget widget_advertise">
+							<!-- <aside class="widget widget_advertise">
 								<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 									<ol class="carousel-indicators">
 										<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -166,7 +169,8 @@
 										</div>
 									</div>
 								</div>	
-							</aside><!-- Widget : Advertise /- -->
+							</aside> -->
+							<!-- Widget : Advertise /- -->
                         </div>
 
 @push('script')

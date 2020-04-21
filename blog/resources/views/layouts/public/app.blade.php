@@ -65,9 +65,13 @@
 					<div class="row">
 						<!-- Content Area -->
 						@yield('content')
-                        ><!-- Content Area /- -->
+                        <!-- Content Area /- -->
 						<!-- Widget Area -->
+						@if(url()->current()==url('kontak'))	
+							
+						@else
 						@include('layouts.public.sidebar')
+						@endif
                         <!-- Widget Area /- -->
 					</div>
 				</div><!-- Container /- -->

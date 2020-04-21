@@ -1,5 +1,5 @@
 @extends('layouts.public.app')
-@section('title', 'Daftar Artikel | '. $appName)
+@section('title', 'Kegiatan | '. $appName)
 
 @section('content')
 <div class="col-xl-8 col-lg-8 col-md-6 col-12 content-area">
@@ -7,32 +7,32 @@
 	
 		<!-- Row -->
 		<div class="row">
-		@foreach($articles as $artikel)
+		@foreach($kegiatan as $kgtn)
 
 			<div class="col-12 col-md-12 col-sm-6 blog-paralle">
 				<div class="type-post">
 					<div class="entry-cover">
-						<div class="post-meta">
-							<span class="byline">by <a href="#" title="Indesign">inDesign</a></span>
-							<span class="post-date"><a href="#">{{ date("d-m-Y", strtotime($artikel->created_at)) }}</a></span>
+						<div cass="post-meta">
+							<span class="byline">by <a href="#" title="Indesign">{{$kgtn->user_nama}}</a></span>
+							<span class="post-date"><a href="#">{{ date("d-m-Y", strtotime($kgtn->created_at)) }}</a></span>
 						</div>
-						<a href="#"><img src="{{ asset($artikel->gambar) }}" alt="Post" /></a>
+						<a href="#"><img src="{{ asset($kgtn->poster) }}" alt="Post" /></a>
 					</div>
 					<div class="entry-content">
 						<div class="entry-header">	
-							<span class="post-category"><a href="#" title="Technology">Technology</a></span>
-							<h3 class="entry-title"><a href="#" title="Traffic Jams Solved">{{$artikel->judul}}</a></h3>
+							<span class="post-category"><a href="#" title="Technology">{{$kgtn->tgl_dilaksanakan . ' (' . $kgtn->jam_dimulai .' s/d '. $kgtn->jam_akhir .')'}}</a></span>
+							<h3 class="entry-title"><a href="#" title="Traffic Jams Solved">{{$kgtn->nama}}</a></h3>
 						</div>								
-						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings his mistaken...</p>
-						<a href="#" title="Read More">Read More</a>
+						<p>{!! $kgtn->deskripsi_kegiatan !!}</p>
+						<!-- <a href="#" title="Read More">Read More</a> -->
 					</div>
 				</div>
 			</div>
 			@endforeach
-
-			{{ $articles->links() }}
 		
 		</div><!-- Row /- -->
+
+		{{ $kegiatan->links() }}
 
 	</article>
 	<!-- About Author -->
@@ -64,4 +64,5 @@
 		@endforeach
 		</div>
 	</div><!-- Related Post /- -->
+	
 </div> @endsection
