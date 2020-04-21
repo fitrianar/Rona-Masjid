@@ -23,4 +23,10 @@ class Masjid extends Model
         'status_masjid',
         'deskripsi'
     ];
+
+    public static function fetchMasjid()
+    {
+
+       return  Masjid::Limit(5)->get();
+    }
 }

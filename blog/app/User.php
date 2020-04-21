@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\EmailVerification;
 use App\Role_akses;
 class User extends Authenticatable
 {
@@ -97,6 +98,13 @@ class User extends Authenticatable
         return 'Admin';
 
 
+    }
+
+
+
+    public static function verifiedEmail($user)
+    {        
+        return $user->notify(new EmailVerification);
     }
 
 }

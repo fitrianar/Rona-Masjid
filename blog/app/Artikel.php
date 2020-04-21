@@ -18,7 +18,9 @@ class Artikel extends Model
         'isi',
         'tgl_dibuat',
         'user_id',
-        'masjid_id'
+        'masjid_id',
+        'publikasi',
+        'status'
     ];
 
     public static function artikelTerbaru()
