@@ -21,7 +21,7 @@ class KegiatanController extends Controller
             $masjidId = auth()->user()->masjid()->id; 
             $kegiatan = Kegiatan::where('masjid_id', $masjidId)->orderBy('created_at', 'desc')->paginate(5);
         }else{
-            $kegiatan = Kegiatan::orderBy('created_at', 'desc')->paginate(5);
+            $kegiatan = Kegiatan::orderBy('created_at', 'desc')->orderBy('created_at', 'desc')->paginate(5);
         }
         return view('cms.kegiatan.index', compact('kegiatan'));
     }

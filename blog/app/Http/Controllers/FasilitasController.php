@@ -14,7 +14,8 @@ class FasilitasController extends Controller
     }
     public function index()
     {
-        $fasilitas = Fasilitas::paginate(5);
+        $masjidId = auth()->user()->masjid()->id; 
+        $fasilitas = Fasilitas::Where("masjid_id", $masjidId)->paginate(5);
         return view('cms.fasilitas.index', compact('fasilitas'));
     }
 

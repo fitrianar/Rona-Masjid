@@ -38,6 +38,7 @@ class ArtikelController extends Controller
                 'artikel.isi as isi',
                 'kategori.nama as nama',
             ])
+            ->orderBy('artikel.created_at', 'desc')
             ->get();
         }else{ //admin
             $articles = DB::table('artikel')->
@@ -50,6 +51,7 @@ class ArtikelController extends Controller
                 'artikel.isi as isi',
                 'kategori.nama as nama',
             ])
+            ->orderBy('artikel.created_at', 'desc')
             ->get();
         }
 
@@ -100,8 +102,10 @@ class ArtikelController extends Controller
                 'artikel.judul as judul',
                 'artikel.gambar as gambar',
                 'artikel.isi as isi',
+                'artikel.created_at as created_at',
                 'kategori.nama as nama',
             ])
+            ->orderBy('artikel.created_at', 'desc')
             ->get();
         }else{ //admin
             $arrData = DB::table('artikel')->
@@ -112,8 +116,10 @@ class ArtikelController extends Controller
                 'artikel.judul as judul',
                 'artikel.gambar as gambar',
                 'artikel.isi as isi',
+                'artikel.created_at as created_at',
                 'kategori.nama as nama',
             ])
+            ->orderBy('artikel.created_at', 'desc')
             ->get();
         }
 
@@ -130,7 +136,8 @@ class ArtikelController extends Controller
                     'id'    =>  $article->id,
                     'judul' =>  $article->judul,
                     'gambar'=>  $article->gambar,
-                    'isi'   =>  $article->isi
+                    'isi'   =>  $article->isi,
+                    'created_at'   =>  $article->created_at
                 ];
                 $data[$article->id]['kategori'][] = $article->nama;
             }
@@ -143,14 +150,18 @@ class ArtikelController extends Controller
             function ($data){
                 return $data['judul'];
         }) 
+        ->editColumn('created_at',
+            function ($data){
+                return $data['created_at'];
+        }) 
         ->editColumn('gambar',
             function ($data){
                 return '<td><img src="'.asset($data['gambar']).'" width="300px" height="300px"></td>';
         }) 
         ->editColumn('isi',
             function ($data){
-                if(strlen($data['isi']) > 200){
-          return  substr($data['isi'], 0, 200) . '...';
+                if(strlen($data['isi']) > 500){
+          return  substr($data['isi'], 0, 500) . '...';
                 }
                 else{
                    return  $data['isi'];

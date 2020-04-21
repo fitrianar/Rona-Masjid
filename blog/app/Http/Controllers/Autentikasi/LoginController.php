@@ -8,6 +8,7 @@ use Auth;
 use Redirect;
 use Session;
 use App\User;
+use App\Masjid;
 
 class LoginController extends Controller
 {
@@ -21,18 +22,21 @@ class LoginController extends Controller
 
     public function registrasi()
     {
-        return view('autentikasi.registrasi');
+        $masjid = Masjid::all();
+        return view('autentikasi.registrasi', compact('masjid'));
     }
     
-    public function storeRegistrasi(Request $request)
+    public function storeRegistrasiPengurus(Request $request)
     {
         $request->validate([
             'nama'      => 'required|string|max:64',
-            'file'    => 'required|file|max:2048',
+            'file'      => 'required|file|max:2048',
+            'no_ktp'    => 'required|string|max:64',
+            'email'     => 'required|email|max:64|unique:users,email',
             'no_telpon' => 'required|string|max:64',
-            'jenis_kelamin' =>  'required',
-            'password'          => 'required|string|min:8|max:100',
-            'password_confirm'  => 'required|string|max:100|same:password'
+            'alamat'    => 'required|string|max:255',
+            'jenis_kelamin'     =>  'required',
+            'masjid_id'     =>  'required'
         ]);
 
         if ($request->file('file')) {
@@ -44,14 +48,15 @@ class LoginController extends Controller
 
             $request['gambar'] = \App\Helper\ImageUpload::pushStorage($dir, $size, $format, $image);                
         }          
-       // $request['email_verified'] = now();
-        $request['no_ktp'] = '';
-        $request['alamat'] = '';
-        $request['masjid_id'] = '0';
+ 
         $request['status'] = 'menunggu' ;
-        $request['role_akses_id'] = '4'; //member
-        $request['password'] = bcrypt($request->password);
+        $request['role_akses_id'] = '3'; //pengurus
+        $request['password'] = bcrypt($request->email);
         $user = User::Create($request->except('file')); 
+
+        User::verifiedEmail($user);
+
+
 
         $request->session()->flash('alert-success', 'Pendaftaran selesai, silahkan login terlebih dahulu');
         return redirect()->route('login');
