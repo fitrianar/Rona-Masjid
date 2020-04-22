@@ -71,7 +71,29 @@ class HomePageController extends Controller
 
     public function artikelDetail($id)
     {
+        $arrResponse = [
+            'artikel.id',
+            'artikel.judul',
+            'artikel.isi',
+            'artikel.gambar',
+            'artikel.created_at',
+            'users.nama',
+            'masjid.nama_masjid',
+            'users.gambar as user_gambar'
+        ];
+        $artikel = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
+        ->join('masjid', 'artikel.masjid_id', 'masjid.id')
+        ->where('artikel.id', $id)->select($arrResponse)->first();
+   
+        if($artikel){
+            $kategori = DB::table('kategori_has_artikel')->join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->where('kategori_has_artikel.artikel_id', $artikel->id)
+            ->get(); 
 
+            return view('public.artikel.detail', compact('artikel', 'kategori'));
+        }
+
+        abort(403); //if artikel tidak ada
     }
 
     public function masjidIndex()
