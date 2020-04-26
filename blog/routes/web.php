@@ -20,12 +20,15 @@ Route::get('/kontak', 'HomePageController@kontak')->name('kontak');
 Route::post('/tambah-kontak', 'HomePageController@storeKontak')->name('store-kontak');
 Route::post('/subscribe', 'BerlanggananController@store')->name('berlangganan-store');
 
-Route::prefix('kegiatan')->group(function () { //belum
+Route::prefix('kegiatan')->group(function () { 
     Route::get('/', 'HomePageController@kegiatanIndex')->name('public-kegiatan-index');
-    Route::get('/detail/{id}', 'HomePageController@kegiatanDetail')->name('public-detail-kegiatan');
+    Route::get('/detail/{id}', 'HomePageController@kegiatanDetail')->name('public-detail-kegiatan'); //nampilin form edit artikel
+
 });
 
-Route::prefix('artikel')->group(function () { //belum
+
+
+Route::prefix('artikel')->group(function () { 
     Route::get('/', 'HomePageController@artikelIndex')->name('public-artikel-index');
     Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-artikel');
 });
@@ -35,24 +38,24 @@ Route::prefix('masjid')->group(function () { //belum
     Route::get('/detail/{id}', 'HomePageController@masjidDetail')->name('public-detail-masjid');
 });
 
-Route::prefix('masjid')->group(function () {
+// Route::prefix('masjid')->group(function () {
 
-    Route::get('/{id}/detail', 'HomeMasjidController@detail')->name('home-masjid-detail');
-    Route::get('/{id}/profile', 'HomeMasjidController@profile')->name('home-masjid-profile');
-    Route::get('/{id}/kegiatan', 'HomeMasjidController@kegiatan')->name('home-masjid-kegiatan');
-    Route::get('/{id}/artikel', 'HomeMasjidController@artikel')->name('home-masjid-artikel');
-    Route::get('/{id}/fasilitas', 'HomeMasjidController@fasilitas')->name('home-masjid-fasilitas');
-    Route::get('/{id}/pengurus', 'HomeMasjidController@pengurus')->name('home-masjid-pengurus');
+//     Route::get('/{id}/detail', 'HomeMasjidController@detail')->name('home-masjid-detail');
+//     Route::get('/{id}/profile', 'HomeMasjidController@profile')->name('home-masjid-profile');
+//     Route::get('/{id}/kegiatan', 'HomeMasjidController@kegiatan')->name('home-masjid-kegiatan');
+//     Route::get('/{id}/artikel', 'HomeMasjidController@artikel')->name('home-masjid-artikel');
+//     Route::get('/{id}/fasilitas', 'HomeMasjidController@fasilitas')->name('home-masjid-fasilitas');
+//     Route::get('/{id}/pengurus', 'HomeMasjidController@pengurus')->name('home-masjid-pengurus');
 
-});
+// });
 
-Route::prefix('kegiatan')->group(function () {
+// Route::prefix('kegiatan')->group(function () {
 
-    Route::get('/detail', 'HomeKegiatanController@index')->name('home-kegiatan-index');
-    Route::get('/detail/{id}', 'HomeKegiatanController@detailKegiatan')->name('home-kegiatan-detail');
-    Route::get('/detail/cari', 'HomeKegiatanController@cari')->name('home-kegiatan-index');
+//     Route::get('/detail', 'HomeKegiatanController@index')->name('home-kegiatan-index');
+//     Route::get('/detail/{id}', 'HomeKegiatanController@detailKegiatan')->name('home-kegiatan-detail');
+//     Route::get('/detail/cari', 'HomeKegiatanController@cari')->name('home-kegiatan-index');
 
-});
+// });
 
 
 Route::get('/login', 'Autentikasi\LoginController@login')->name('login');
