@@ -65,7 +65,7 @@
                                 <li class="dropdown">
 										<i class="ddl-switch fa fa-angle-down"></i>
 										<a class="dropdown-item dropdown-toggle" href="index-2.html" title="Home 2">Kategori</a>
-										<ul class="dropdown-menu">
+										<!-- <ul class="dropdown-menu">
 											<li><a class="dropdown-item" href="index-2.html" title="Home 2">Home 2</a></li>
 											<li><a class="dropdown-item" href="index-3.html" title="Home 3">Home 3</a></li>
 											<li><a class="dropdown-item" href="index-4.html" title="Home 4">Home 4</a></li>
@@ -76,7 +76,7 @@
 											<li><a class="dropdown-item" href="index-9.html" title="Home 9">Home 9</a></li>
 											<li><a class="dropdown-item" href="index-10.html" title="Home 10">Home 10</a></li>
 											<li><a class="dropdown-item" href="index-11.html" title="Home 11">Home 11</a></li>
-										</ul>
+										</ul> -->
 									</li>                          
                             </ul>
                         </li>

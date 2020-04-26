@@ -9,11 +9,16 @@
 								</div>
 								<div class="entry-content">
 									<div class="entry-header">	
-										<span class="post-category"><a href="#" title="Lifestyle">Lifestyle</a></span>
+									<span class="post-category">
+										@forelse($kategori as $ktgr)
+											<a href="#" title="{{ $ktgr->nama }}">{{ $ktgr->nama }}, </a>
+										@empty
+										@endforelse
+									</span>
 										<h3 class="entry-title">{{ $artikelUtama->judul }}</h3>
 										<div class="post-meta">
-											<span class="byline">by <a href="#" title="Indesign">inDesign</a></span>
-											<span class="post-date">{{ $artikelUtama->created_at }}</span>
+										<span class="byline">Oleh {{ $artikelUtama->nama }} </span>
+										<span class="post-date">{{ $artikelUtama->created_at}}</span>
 										</div>
 									</div>		
 
@@ -50,33 +55,21 @@
 								</div>
 							</div><!-- About Author /- -->
 							<!-- Related Post -->
-							<div class="related-post">
-								<h3>You May Also Like</h3>
-								<div class="related-post-block">
-									<div class="related-post-box">
-										<a href="#"><img src="http://via.placeholder.com/170x113" alt="Post" /></a>
-										<span><a href="#" title="Travel">Travel</a></span>
-										<h3><a href="#" title="Traffic Jams Solved">Traffic Jams Solved</a></h3>
-									</div>
-									<div class="related-post-box">
-										<a href="#"><img src="http://via.placeholder.com/170x113" alt="Post" /></a>
-										<span><a href="#" title="Science">Science</a></span>
-										<h3><a href="#" title="How Astronauts Live">How Astronauts Live</a></h3>
-									</div>
-									<div class="related-post-box">
-										<a href="#"><img src="http://via.placeholder.com/170x113" alt="Post" /></a>
-										<span><a href="#" title="Nature">Nature</a></span>
-										<h3><a href="#" title="White Sand">White Sand</a></h3>
-									</div>
-									<div class="related-post-box">
-										<a href="#"><img src="http://via.placeholder.com/170x113" alt="Post" /></a>
-										<span><a href="#" title="Lifestyle">Lifestyle</a></span>
-										<h3><a href="#" title="Sunset at Beach">Sunset at Beach</a></h3>
-									</div>
-								</div>
-							</div><!-- Related Post /- -->
+	<div class="related-post">
+		<h3>Daftar Masjid </h3>
+		<div class="related-post-block">
+		@foreach(\App\Masjid::fetchMasjid() as $masjid)
+			<div class="related-post-box">
+				<a href="#"><img src="{{$masjid->gambar}}" alt="Post" /></a>
+				<span><a href="#" title="Travel">{{ $masjid->alamat_masjid }}</a></span>
+				<h3><a href="#" title="Traffic Jams Solved">{{ $masjid->nama_masjid }}</a></h3>
+			</div>
+		@endforeach
+		</div>
+	</div>
+	<!-- Related Post /- -->
 							<!-- Comment Area -->
-							<div class="comments-area">
+							<!-- <div class="comments-area">
 								<h2 class="comments-title">3 Comments</h2>
 								<ol class="comment-list">
 									<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent">
@@ -138,9 +131,10 @@
 											</div>
 										</div>
 									</li>
-								</ol><!-- comment-list /- -->
+								</ol> -->
+								<!-- comment-list /- -->
 								<!-- Comment Form -->
-								<div class="comment-respond">
+								<!-- <div class="comment-respond">
 									<h2 class="comment-reply-title">Leave a Reply</h2>
 									<form method="post" class="comment-form">
 										<p class="comment-form-author">
@@ -159,7 +153,9 @@
 											<input name="submit" class="submit" value="Post Comment" type="submit"/>
 										</p>
 									</form>
-								</div><!-- Comment Form /- -->
-							</div><!-- Comment Area /- -->
+								</div> -->
+								<!-- Comment Form /- -->
+							<!-- </div> -->
+							<!-- Comment Area /- -->
                         </div>
 @endsection

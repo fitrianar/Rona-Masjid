@@ -4,11 +4,11 @@
 @section('content')
 <div class="container">
 		<div class="contact-info">
-			<img src="http://via.placeholder.com/1170x500" alt="contact">
+		<img src="{{ asset('img/kontak.png') }}" alt="contact" style="height:200px !important">
 			<div class="block-title">
-				<h3>Contact Us</h3>
+				<h3>Hubungi Kami</h3>
 			</div>
-			<p>These repudiated and annoyances accepted.</p>
+			<p>Saran dan masukan dari anda sangat berharga bagi kami.</p>
 		</div>
 		<div class="contact-form">
 			<form action="{{ route('store-kontak') }}" method="POST" class="row form-submit">

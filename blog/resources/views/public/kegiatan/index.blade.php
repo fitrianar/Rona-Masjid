@@ -21,9 +21,13 @@
 					<div class="entry-content">
 						<div class="entry-header">	
 							<span class="post-category"><a href="#" title="Technology">{{$kgtn->tgl_dilaksanakan . ' (' . $kgtn->jam_dimulai .' s/d '. $kgtn->jam_akhir .')'}}</a></span>
-							<h3 class="entry-title"><a href="#" title="Traffic Jams Solved">{{$kgtn->nama}}</a></h3>
+							<h3 class="entry-title"><a href="{{ route('public-detail-kegiatan', $kgtn->id)}}" title="Traffic Jams Solved">{{$kgtn->nama}}</a></h3>
 						</div>								
-						<p>{!! $kgtn->deskripsi_kegiatan !!}</p>
+						@if(strlen($kgtn->deskripsi_kegiatan) > 500)
+        					<p>{!! substr($kgtn->deskripsi_kegiatan, 0, 500) . '...' !!}</p>
+      					@else
+        					<p>{!! $kgtn->deskripsi_kegiatan !!}</p>
+     					@endif
 						<!-- <a href="#" title="Read More">Read More</a> -->
 					</div>
 				</div>
@@ -63,6 +67,7 @@
 			</div>
 		@endforeach
 		</div>
-	</div><!-- Related Post /- -->
+	</div>
+	<!-- Related Post /- -->
 	
 </div> @endsection

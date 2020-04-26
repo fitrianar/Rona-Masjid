@@ -71,7 +71,7 @@
                   <div class="col-4">
                     <img src="{{asset($kgtn->poster)}}" width="200">
                   </div>
-                  <a href="#" class="btn btn-primary">Detail</a>
+                  <a href="" class="btn btn-primary">#Detail</a>
                 </div>
               </div>
             </div>

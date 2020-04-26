@@ -30,7 +30,7 @@
 
     <div class="form-group ">
         <label for="name">Isi</label>
-        <textarea class="form-control" name="isi" value="{{ old('isi') }}"  id="textarea-ckeditor"></textarea>
+        <textarea class="form-control {{ $errors->has('isi') ? 'is-invalid' : '' }}" name="isi" value="{{ old('isi') }}"  id="textarea-ckeditor"></textarea>
         @if ($errors->has( 'isi'))
             <div class="text-danger">
             <p>{{ $errors->first('isi')}}</p>

@@ -13,9 +13,9 @@
 			@foreach($masjids as $masjid)
 				<div class="colss-6">
 					<div class="related-post-box">
-						<a href="#"><img src="{{$masjid->gambar}}" alt="Post" /></a>
+						<a href="{{ route('public-detail-masjid', $masjid->id) }}"><img src="{{$masjid->gambar}}" alt="Post" /></a>
 						<span><a href="#" title="Travel">{{ $masjid->alamat_masjid }}</a></span>
-						<h3><a href="#" title="Traffic Jams Solved">{{ $masjid->nama_masjid }}</a></h3>
+						<h3><a href="{{ route('public-detail-masjid', $masjid->id) }}" title="Traffic Jams Solved">{{ $masjid->nama_masjid }}</a></h3>
 					</div>
 				</div>
 			@endforeach

@@ -6,13 +6,13 @@
 								<div class="latest-content">
 									<a href="#" title="Recent Posts"><i><img src="{{ asset($artikel->gambar) }}" width="100" height="80" class="wp-psost-image" height="100px" weight="100px" alt="blog-1" /></i></a>
 									<h5><a title="Beautiful Landscape View of Rio de Janeiro" href="#">{{ $artikel->judul}}</a></h5>
-									<span><a href="#">march 14, 2017</a></span>
+									<span><a href="#">{{ $artikel->created_at }}</a></span>
 								</div>
 								@endforeach
 								
 							</aside><!-- Widget : Latest Post /- -->
 							<!-- Widget : Aboutme -->
-							<aside class="widget widget_aboutme">
+							<!-- <aside class="widget widget_aboutme">
 								<h3 class="widget-title">About Me</h3>
 								<div class="about-info">
 									<img src="http://via.placeholder.com/345x230" alt="widget"/>
@@ -20,7 +20,8 @@
 									and dislike men who are  beguiledand demoralized charms.</p>
 									<a href="#" title="READ MORE">READ MORE</a>
 								</div>
-							</aside><!-- Widget : Aboutme /- -->
+							</aside> -->
+							<!-- Widget : Aboutme /- -->
 							<!-- Widget : Categories -->
 							<aside class="widget widget_categories text-center">
 								<h3 class="widget-title">Categories</h3>
