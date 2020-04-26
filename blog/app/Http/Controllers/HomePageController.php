@@ -60,7 +60,30 @@ class HomePageController extends Controller
 
     public function kegiatanDetail($id)
     {
+        $arrResponse = [
+            'kegiatan.id',
+            'kegiatan.nama as judul',
+            'kegiatan.tgl_dilaksanakan',
+            'kegiatan.jam_dimulai',
+            'kegiatan.jam_akhir',
+            'kegiatan.deskripsi_kegiatan',
+            'kegiatan.poster',
+            'kegiatan.created_at',
+            'kegiatan.tgl_dibuat',
+            'users.nama',
+            'masjid.nama_masjid',
+            'users.gambar as user_gambar'
+        ];
+        $kegiatan = DB::table('kegiatan')->join('users', 'kegiatan.user_id', 'users.id')
+        ->join('masjid', 'kegiatan.masjid_id', 'masjid.id')
+        ->where('kegiatan.id', $id)->select($arrResponse)->first();
+   
+        if($kegiatan){ 
 
+            return view('public.kegiatan.detail', compact('kegiatan'));
+        }
+
+        abort(403); //if kegiatan tidak ada
     }
 
     public function artikelIndex()
@@ -96,6 +119,7 @@ class HomePageController extends Controller
         abort(403); //if artikel tidak ada
     }
 
+
     public function masjidIndex()
     {
         $masjids = Masjid::orderBy('created_at', 'desc')->paginate(4);
@@ -104,7 +128,15 @@ class HomePageController extends Controller
 
     public function masjidDetail($id)
     {
+   
+        $masjid = Masjid::with('users')->with('kegiatan')->with('fasilitas')->where('id', $id)->first();
 
+        // return $masjid;
+        if($masjid){
+            return view('public.masjid.detail', compact('masjid'));
+        }
+
+        abort(403); //if masjid tidak ada
     }
 
     public function kontak()
