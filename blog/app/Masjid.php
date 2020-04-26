@@ -24,6 +24,22 @@ class Masjid extends Model
         'deskripsi'
     ];
 
+    public function users()
+    {
+        return $this->hasMany('App\User', 'masjid_id', 'id');
+    }
+
+    public function fasilitas()
+    {
+        return $this->hasMany('App\Fasilitas', 'masjid_id', 'id');
+    }
+
+    public function kegiatan()
+    {
+        return $this->hasMany('App\Kegiatan', 'masjid_id', 'id');
+    }
+    
+
     public static function fetchMasjid()
     {
 

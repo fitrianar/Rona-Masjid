@@ -21,7 +21,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><img src="{{ asset('img/logo.png') }}" height='200px' weight='200px' style="margin-top:-50px; margin-bottom:-50px;"></a>
+    <a href="{{ route('index') }}"><img src="{{ asset('img/logo.png') }}" height='200px' weight='200px' style="margin-top:-50px; margin-bottom:-50px;"></a>
   </div>
 
   <div class="card">
@@ -57,8 +57,13 @@
         </div>
         <div class="form-group ">
           <label for="name">Gambar</label>
-          <input id="minute_length"  class="form-control" type="file" name="file" required="">
-        </div>
+          <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}" required="">
+          @if ($errors->has( 'file'))
+            <div class="text-danger">
+            <p>{{ $errors->first('file')}}</p>
+            </div>
+          @endif
+          </div>
          
         <div class="form-group ">
         <label for="name">No KTP</label></label>
@@ -118,7 +123,7 @@
       </div> -->
 
       <a href="{{ route('login') }}" class="text-center">Sudah mempunyai akun? login disini</a>
-      <a href="login.html" class="text-center">Daftar Sebagai Pengurus?</a>
+      <!-- <a href="login.html" class="text-center">Daftar Sebagai Pengurus?</a> -->
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
