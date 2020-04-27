@@ -86,6 +86,13 @@ Route::prefix('adminpanel')->group(function () {
             Route::post('/update-password/{id}', 'ProfileController@updatePassword')->name('profile-update-password');    
         });
 
+        Route::middleware(['admin'])->prefix('hubungi-kami')->group(function () {
+            Route::get('/', 'HubungiKamiController@index')->name('hubungi-kami-index');
+            Route::get('/datatables', 'HubungiKamiController@datatables')->name('hubungi-kami-datatables');
+            Route::get('/{id}/balas', 'HubungiKamiController@balas')->name('hubungi-kami-balas');
+
+        });
+
         Route::middleware(['admin'])->prefix('manajemen-pengguna')->group(function () {
 
             Route::prefix('pengurus')->group(function () {
