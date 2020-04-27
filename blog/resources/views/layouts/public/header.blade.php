@@ -81,7 +81,7 @@
                             </ul>
                         </li>
                         <li class="{{ Str::startsWith(Request::path(),'masjid') ? 'active' : ''}}"><a class="nav-link" title="Features" href="{{ route('public-masjid-index') }}">Daftar Masjid</a></li>
-                        <li class="{{ Str::startsWith(Request::path(),'tentang-kami') ? 'active' : ''}}"><a class="nav-link" title="Contact" href="contact-us.html">#Tentang Kami</a></li>
+                        <li class="{{ Str::startsWith(Request::path(),'tentang-kami') ? 'active' : ''}}"><a class="nav-link" title="Contact" href="{{ route('tentang-kami') }}">Tentang Kami</a></li>
 
                         <li class="{{ Str::startsWith(Request::path(),'kontak') ? 'active' : ''}}"><a class="nav-link" title="Archives" href="{{ route('kontak') }}">Kontak</a></li>
                     

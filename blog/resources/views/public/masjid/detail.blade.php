@@ -28,10 +28,10 @@
       <th scope="col">Luas Bangunan</th>
 	  <td>{{ $masjid->luas_bangunan }}</td>
     </tr>
-	<tr>
+	<!-- <tr>
       <th scope="col">Lampiran</th>
 	  <td>{{ $masjid->lampiran_masjid }}</td>
-    </tr>
+    </tr> -->
 	<tr>
       <th scope="col">Status Masjid</th>
 	  <td>{{ $masjid->status_masjid }}</td>

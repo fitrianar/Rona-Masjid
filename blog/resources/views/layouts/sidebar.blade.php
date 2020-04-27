@@ -294,7 +294,20 @@
               </li>
               @endif
             </ul>
+      
+          
           </li>
+          @if(auth()->user()->role()->id == 1)
+
+          <li class="nav-item has-treeview {{ Str::startsWith(Request::path(),'adminpanel/hubungi-kami') ? 'menu-open' : ''}}">
+          <a href="{{ route('hubungi-kami-index') }}" class="nav-link">
+              <i class="fas fa-phone"></i> 
+              <p>
+                Hubungi Kami
+              </p>
+          </a>
+          </li>
+          @endif
           <!-- Batas Akhir -->
           <!-- Batas Awal -->
           @if(auth()->user()->role()->id == 3)

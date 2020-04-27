@@ -67,7 +67,7 @@
 						@yield('content')
                         <!-- Content Area /- -->
 						<!-- Widget Area -->
-						@if(url()->current()==url('kontak') || Str::startsWith(Request::path(),'artikel/detail') || Str::startsWith(Request::path(),'kegiatan/detail')  || Str::startsWith(Request::path(),'masjid/detail')) 	
+						@if(url()->current()==url('kontak') || Str::startsWith(Request::path(),'artikel/detail') || Str::startsWith(Request::path(),'kegiatan/detail')  || Str::startsWith(Request::path(),'masjid/detail') || Str::startsWith(Request::path(),'tentang-kami')) 	
 
 						@else
 						@include('layouts.public.sidebar')
