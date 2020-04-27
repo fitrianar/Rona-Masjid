@@ -159,4 +159,9 @@ class HomePageController extends Controller
 
 
     }
+
+    public function tentangKami()
+    {
+        return view('public.tentang_kami');
+    }
 }
