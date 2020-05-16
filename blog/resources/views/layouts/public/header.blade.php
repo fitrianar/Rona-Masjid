@@ -65,18 +65,11 @@
                                 <li class="dropdown">
 										<i class="ddl-switch fa fa-angle-down"></i>
 										<a class="dropdown-item dropdown-toggle" href="index-2.html" title="Home 2">Kategori</a>
-										<!-- <ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="index-2.html" title="Home 2">Home 2</a></li>
-											<li><a class="dropdown-item" href="index-3.html" title="Home 3">Home 3</a></li>
-											<li><a class="dropdown-item" href="index-4.html" title="Home 4">Home 4</a></li>
-											<li><a class="dropdown-item" href="index-5.html" title="Home 5">Home 5</a></li>
-											<li><a class="dropdown-item" href="index-6.html" title="Home 6">Home 6</a></li>
-											<li><a class="dropdown-item" href="index-7.html" title="Home 7">Home 7</a></li>
-											<li><a class="dropdown-item" href="index-8.html" title="Home 8">Home 8</a></li>
-											<li><a class="dropdown-item" href="index-9.html" title="Home 9">Home 9</a></li>
-											<li><a class="dropdown-item" href="index-10.html" title="Home 10">Home 10</a></li>
-											<li><a class="dropdown-item" href="index-11.html" title="Home 11">Home 11</a></li>
-										</ul> -->
+										<ul class="dropdown-menu">
+											@foreach(\App\Kategori::fetchAll() as $kategori)
+											    <li><a class="dropdown-item" href="{{  route('public-artikel-index'). '?kategori='. $kategori->nama }}" title="{{$kategori->nama}}">{{$kategori->nama}}</a></li>
+                                            @endforeach
+                                        </ul>
 									</li>                          
                             </ul>
                         </li>

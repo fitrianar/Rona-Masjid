@@ -48,6 +48,11 @@
             @empty
             @endforelse
         </select>
+        @if ($errors->has( 'kategori'))
+            <div class="text-danger">
+            <p>{{ $errors->first('kategori')}}</p>
+            </div>
+        @endif
     </div>
 
     <!-- 

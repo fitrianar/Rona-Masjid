@@ -52,17 +52,23 @@
 
 	<!-- Header Section -->
     @include('layouts.public.header')
+
     <!-- Header Section /- -->
 
 	<div class="main-container">
 	
 		<main class="site-main">
+		
 
 			<!-- Page Content -->
 			<div class="container-fluid no-left-padding no-right-padding page-content blog-single">
 				<!-- Container -->
+				<div style="margin:0px 100px">
+				@include('layouts.alert')
+				</div>
 				<div class="container">
 					<div class="row">
+					
 						<!-- Content Area -->
 						@yield('content')
                         <!-- Content Area /- -->

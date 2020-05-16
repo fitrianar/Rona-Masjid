@@ -30,14 +30,10 @@
 
       <form action="{{ route('registrasi-pengurus-store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="input-group mb-3">
-          <input type="text" class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" placeholder="Full name" name="nama" value="{{ old('nama') }}">
-         
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+        <div class="form-group">
+        <label for="name">Nama</label>
+          <input type="text" class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" placeholder="" name="nama" value="{{ old('nama') }}">
+        
           @if ($errors->has('nama'))
               <div class="text-danger">
               <p>{{ $errors->first('nama')}}</p>
@@ -46,18 +42,23 @@
         </div>
         <div class="form-group ">
           <label for="name">Pilih Masjid</label>
-          <select class="form-control" name="masjid_id">
+          <select class="form-control {{ $errors->has('masjid_id') ? 'is-invalid' : '' }}" name="masjid_id">
             <option selected hidden value="">--Pilih Masjid--</option>
               @forelse($masjid as $msj)
-              <option value="{{ $msj->id }}">{{ $msj->nama_masjid }}</option>
+              <option value="{{ $msj->id }}" {{ old('masjid_id') ===  $msj->id ? 'selected' : '' }}>{{ $msj->nama_masjid }}</option>
               @empty
             <option value="" selected hidden>data kosong</option>
               @endforelse
           </select>
+          @if ($errors->has( 'masjid_id'))
+            <div class="text-danger">
+            <p>{{ $errors->first('masjid_id')}}</p>
+            </div>
+          @endif
         </div>
         <div class="form-group ">
           <label for="name">Gambar</label>
-          <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}" required="">
+          <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}">
           @if ($errors->has( 'file'))
             <div class="text-danger">
             <p>{{ $errors->first('file')}}</p>
@@ -67,38 +68,63 @@
          
         <div class="form-group ">
         <label for="name">No KTP</label></label>
-        <input type="number" class="form-control" name="no_ktp" required/>
+        <input type="number" class="form-control {{ $errors->has('no_ktp') ? 'is-invalid' : '' }}" name="no_ktp" value="{{ old('no_ktp') }}">
+        @if ($errors->has( 'no_ktp'))
+            <div class="text-danger">
+            <p>{{ $errors->first('no_ktp')}}</p>
+            </div>
+        @endif
     </div>
 
     <div class="form-group ">
         <label for="name">Email</label>
-        <input type="text" class="form-control" name="email" required/>
+        <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+        @if ($errors->has( 'email'))
+            <div class="text-danger">
+            <p>{{ $errors->first('email')}}</p>
+            </div>
+        @endif
     </div>
 
     <div class="form-group ">
         <label for="name">No Telepon</label>
-        <input type="text" class="form-control" name="no_telpon"/>
+        <input type="text" class="form-control {{ $errors->has('no_telpon') ? 'is-invalid' : '' }}" name="no_telpon" value="{{ old('no_telpon') }}">
+        @if ($errors->has( 'no_telpon'))
+            <div class="text-danger">
+            <p>{{ $errors->first('no_telpon')}}</p>
+            </div>
+        @endif
     </div>
 
     <div class="form-group ">
         <label for="name">Alamat</label>
-        <textarea class="form-control" cols="4" name="alamat" required placeholer="isi alamat"></textarea>
+        <textarea class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}" cols="4" name="alamat">{{ old('alamat') }}</textarea>
+        @if ($errors->has( 'alamat'))
+            <div class="text-danger">
+            <p>{{ $errors->first('alamat')}}</p>
+            </div>
+        @endif
     </div>
 
     <div class="form-group ">
         <label for="name">Jenis Kelamin</label>
-        <select class="form-control" name="jenis_kelamin">
+        <select class="form-control {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}" name="jenis_kelamin">
             <option selected hidden value="">--Pilih Jenis Kelamin--</option>
-            <option value="Laki-Laki">Laki-Laki</option>
-            <option value="Perempuan">Perempuan</option>
+            <option value="Laki-Laki" {{ old('jenis_kelamin') === "Laki-Laki" ? 'selected' : '' }}>Laki-Laki</option>
+            <option value="Perempuan"  {{ old('jenis_kelamin') === "Perempuan" ? 'selected' : '' }}>Perempuan</option>
         </select>
+        @if ($errors->has( 'jenis_kelamin'))
+            <div class="text-danger">
+            <p>{{ $errors->first('jenis_kelamin')}}</p>
+            </div>
+        @endif
     </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agreer" required>
               <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
+              Saya bersedia mengikuti aturan dan ketentuan di website ini
               </label>
             </div>
           </div>

@@ -19,7 +19,7 @@
 
     <div class="form-group ">
         <label for="parent_id">Tanggal Dilaksanakan</label>
-        <input type="date" name="bday" min=="{{ now() }}" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" name="tgl_dilaksanakan" value="{{ old('tgl_dilaksanakan') }}" required>
+        <input type="date" name="bday" min="{{ now() }}" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" name="tgl_dilaksanakan" value="{{ old('tgl_dilaksanakan') }}" required>
         @if ($errors->has('tgl_dilaksanakan'))
             <div class="text-danger">
             <p>{{ $errors->first('tgl_dilaksanakan')}}</p>
@@ -29,7 +29,11 @@
 
     <div class="form-group ">
         <label for="parent_id">Jam Dimulai</label>
-        <input type="text" class="form-control {{ $errors->has('jam_dimulai') ? 'is-invalid' : '' }}" name="jam_dimulai" value="{{ old('jam_dimulai') }}" required>
+        <select name="jam_dimulai" class="form-control {{ $errors->has('jam_dimulai') ? 'is-invalid' : '' }}" id="">
+            @foreach($jam as $item)
+            <option value="{{ $item }}">{{$item}}</option>
+            @endforeach
+        </select>
         @if ($errors->has('jam_dimulai'))
             <div class="text-danger">
             <p>{{ $errors->first('jam_dimulai')}}</p>
@@ -39,7 +43,12 @@
 
     <div class="form-group ">
         <label for="parent_id">Jam Berakhir</label>
-        <input type="text" class="form-control {{ $errors->has('jam_akhir') ? 'is-invalid' : '' }}" name="jam_akhir" value="{{ old('jam_akhir') }}" required>
+         <select name="jam_akhir" class="form-control {{ $errors->has('jam_akhir') ? 'is-invalid' : '' }}" id="">
+            @foreach($jam as $item)
+            <option value="{{ $item }}">{{$item}}</option>
+            @endforeach
+            <option value="Selesai">Selesai</option>
+        </select>
         @if ($errors->has('jam_akhir'))
             <div class="text-danger">
             <p>{{ $errors->first('jam_akhir')}}</p>

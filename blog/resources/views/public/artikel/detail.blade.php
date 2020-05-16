@@ -4,14 +4,14 @@
 @section('content')
 <div class="entry-cover text-center" style=" margin: auto;">
 	<center>
-	<img src="{{ asset($artikel->gambar) }}" alt="Post" width="1000"  />
+	<img src="{{ asset($artikel->gambar) }}" alt="Post" width="800"  />
 	</center>
 </div>
 <!-- Content Area -->
-<div class="col-xl-12 col-lg-12 col-md-12 col-12 content-area text-center " >
+<div class="col-xl-12 col-lg-12 col-md-12 col-12 content-area" >
 	<article class="type-post">
 		<div class="entry-content" >
-			<div class="entry-header  text-center"  style=" margin: auto;">	
+			<div class="entry-header"  style="">	
 				<span class="post-category">
 					@forelse($kategori as $ktgr)
 						<a href="#" title="{{ $ktgr->nama }}">{{ $ktgr->nama }}, </a>

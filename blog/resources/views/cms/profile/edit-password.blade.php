@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
-@section('title', 'PROFILE')
-@section('title-content', 'Ubah PROFILE')
+@section('title', 'PASSWORD')
+@section('title-content', 'Ubah PASSWORD')
 @section('footer-content')
 
 @section('content')

@@ -45,7 +45,12 @@
                 <option value="{{ $item->id }}">{{ $item->nama }}</option>        
             @empty
             @endforelse
-        </select>    
+        </select> 
+        @if ($errors->has( 'kategori'))
+            <div class="text-danger">
+            <p>{{ $errors->first('kategori')}}</p>
+            </div>
+        @endif   
     </div>
 
     <!-- 

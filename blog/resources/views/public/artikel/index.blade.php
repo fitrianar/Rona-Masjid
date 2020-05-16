@@ -7,7 +7,7 @@
 	
 		<!-- Row -->
 		<div class="row">
-		@foreach($articles as $artikel)
+		@forelse($articles as $artikel)
 
 			<div class="col-12 col-md-12 col-sm-6 blog-paralle">
 				<div class="type-post">
@@ -28,7 +28,11 @@
 					</div>
 				</div>
 			</div>
-			@endforeach
+			@empty
+			<div class="col-12 col-md-12 col-sm-6 blog-paralle">
+				<center><i><h4>Data Tidak Ditemukan / Kosong</h4></i></center>
+			</div>
+			@endforelse
 
 			{{ $articles->links() }}
 		

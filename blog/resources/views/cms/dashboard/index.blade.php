@@ -28,14 +28,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{ $jmlPengurus }}</h3>
+                <h3>{{ $jmlKegiatan }}</h3>
 
-                <p>Jumlah Pengurus</p>
+                <p>Jumlah Kegiatan</p>
               </div>
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="{{ route('pengurus.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('kegiatan.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -71,7 +71,7 @@
                   <div class="col-4">
                     <img src="{{asset($kgtn->poster)}}" width="200">
                   </div>
-                  <a href="" class="btn btn-primary">#Detail</a>
+                  <a href="{{ route('public-detail-kegiatan', $kgtn->id) }}" class="btn btn-primary">Detail</a>
                 </div>
               </div>
             </div>

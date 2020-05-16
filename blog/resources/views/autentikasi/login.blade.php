@@ -26,6 +26,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+    @include('layouts.alert')
       <p class="login-box-msg">Masuk sebagai pengurus</p>
 
       <form action="{{ route('login-masuk') }}" method="post">
