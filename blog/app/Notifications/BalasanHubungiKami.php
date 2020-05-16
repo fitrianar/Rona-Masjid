@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class EmailVerification extends Notification
+class BalasanHubungiKami extends Notification
 {
     use Queueable;
 
@@ -41,9 +41,8 @@ class EmailVerification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                     ->line('Hai, '. $notifiable->nama.' Selamat Datang di RONA MASJID')
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', route('registrasi-pengurus-verifikasi', $notifiable->email))
+                    ->line('Terima Kasih atas Masukannya, Berikut Balasannya')
+                    ->line($notifiable->balasan)
                     ->line('Thank you for using our application!');
     }
 
