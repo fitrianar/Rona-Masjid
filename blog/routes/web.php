@@ -38,36 +38,16 @@ Route::prefix('masjid')->group(function () { //belum
     Route::get('/detail/{id}', 'HomePageController@masjidDetail')->name('public-detail-masjid');
 });
 
-// Route::prefix('masjid')->group(function () {
-
-//     Route::get('/{id}/detail', 'HomeMasjidController@detail')->name('home-masjid-detail');
-//     Route::get('/{id}/profile', 'HomeMasjidController@profile')->name('home-masjid-profile');
-//     Route::get('/{id}/kegiatan', 'HomeMasjidController@kegiatan')->name('home-masjid-kegiatan');
-//     Route::get('/{id}/artikel', 'HomeMasjidController@artikel')->name('home-masjid-artikel');
-//     Route::get('/{id}/fasilitas', 'HomeMasjidController@fasilitas')->name('home-masjid-fasilitas');
-//     Route::get('/{id}/pengurus', 'HomeMasjidController@pengurus')->name('home-masjid-pengurus');
-
-// });
-
-// Route::prefix('kegiatan')->group(function () {
-
-//     Route::get('/detail', 'HomeKegiatanController@index')->name('home-kegiatan-index');
-//     Route::get('/detail/{id}', 'HomeKegiatanController@detailKegiatan')->name('home-kegiatan-detail');
-//     Route::get('/detail/cari', 'HomeKegiatanController@cari')->name('home-kegiatan-index');
-
-// });
 
 
 Route::get('/login', 'Autentikasi\LoginController@login')->name('login');
 Route::post('/login-masuk', 'Autentikasi\LoginController@loginMasuk')->name('login-masuk');
 Route::get('/registrasi', 'Autentikasi\LoginController@registrasi')->name('registrasi');
 Route::post('/registrasi-pengurus-store', 'Autentikasi\LoginController@storeRegistrasiPengurus')->name('registrasi-pengurus-store');
+Route::get('/verifikasi-email/{email}', 'Autentikasi\LoginController@verifikasiAkun')->name('registrasi-pengurus-verifikasi');
 
 //selesai
 
-// Route::get('/test', function () {
-//     return view('cms.dashboard.index');
-// });
 
 
 //Data routing CMS
@@ -90,6 +70,7 @@ Route::prefix('adminpanel')->group(function () {
             Route::get('/', 'HubungiKamiController@index')->name('hubungi-kami-index');
             Route::get('/datatables', 'HubungiKamiController@datatables')->name('hubungi-kami-datatables');
             Route::get('/{id}/balas', 'HubungiKamiController@balas')->name('hubungi-kami-balas');
+            Route::post('/{id}/balas-pesan', 'HubungiKamiController@postBalas')->name('hubungi-kami-balas-post');
 
         });
 
