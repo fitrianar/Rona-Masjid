@@ -20,4 +20,9 @@ class Kategori extends Model
     {
         return Kategori::orderBy('created_at', 'desc')->take(5)->get(); 
     }
+
+    public static function fetchAll()
+    {
+        return Kategori::all();
+    }
 }
