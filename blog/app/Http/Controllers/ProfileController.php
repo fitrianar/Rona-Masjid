@@ -19,11 +19,11 @@ class ProfileController extends Controller
     {
         $request->validate([
             'nama'      => 'required|string|max:64',
-            'no_ktp'    => 'nullable|string|max:2048',
-            'email'     => 'required|string|max:255',
+            'no_ktp'    => 'nullable|numeric|digits_between:16,16',
+            'email'     => 'required|email|max:100',
             'alamat'    => 'required|string',
             'jenis_kelamin'       => 'required|string|max:64',
-            'file'      => 'nullable|file|max:2048',
+            'file'      => 'nullable|file|max:2048|mimes:jpeg,bmp,png,jpg',
         ]); 
 
         $profile = User::where('id', auth()->user()->id)->first();

@@ -25,12 +25,9 @@ class DashboardController extends Controller
             $masjidId = auth()->user()->masjid()->id;
             $kegiatan = Kegiatan::where('masjid_id', $masjidId)->limit(4)->get();
             $jmlArtikel = Artikel::where('masjid_id', $masjidId)->count();
-            $jmlPengurus = DB::table('users')
-                        ->join('masjid', 'users.masjid_id', 'masjid.id')
-                        ->where('users.masjid_id',  $masjidId)
-                        ->count();
+            $jmlKegiatan = Kegiatan::where('masjid_id', $masjidId)->count();
 
-            return view('cms.dashboard.index', compact('kegiatan', 'jmlArtikel', 'jmlPengurus'));
+            return view('cms.dashboard.index', compact('kegiatan', 'jmlArtikel', 'jmlKegiatan'));
         }
     }
 }

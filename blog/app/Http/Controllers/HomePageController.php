@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Artikel, App\HubungiKami, App\Masjid;
 class HomePageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
         $arrResponse = [
             'artikel.id',
             'artikel.judul',
@@ -86,8 +87,18 @@ class HomePageController extends Controller
         abort(403); //if kegiatan tidak ada
     }
 
-    public function artikelIndex()
+    public function artikelIndex(Request $request)
     {
+       // return $request->kategori;
+        if($request->has('kategori')){
+         $articles =  DB::table('kategori')->where('nama', $request->kategori)
+            ->join('kategori_has_artikel', 'kategori.id', 'kategori_has_artikel.kategori_id')
+            ->join('artikel', 'kategori_has_artikel.artikel_id', 'artikel.id')
+            ->select('artikel.*')
+            ->paginate(5);
+
+            return view('public.artikel.index', compact('articles'));
+        }
         $articles = Artikel::orderBy('created_at', 'desc')->paginate(5);
         return view('public.artikel.index', compact('articles'));
     }

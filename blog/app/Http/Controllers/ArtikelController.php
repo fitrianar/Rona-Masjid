@@ -223,8 +223,9 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul'     => 'required|string|max:150',
-            'file'      => 'required|file|max:2048',
-            'isi'       => 'required|string|max:3000'
+            'file'      => 'required|file|max:2048|mimes:jpeg,bmp,png,jpg',
+            'isi'       => 'required|string|max:3000',
+            'kategori'  => 'required'
         ]);
 
         $gambar = null;
@@ -242,17 +243,6 @@ class ArtikelController extends Controller
         
         $request['gambar'] = $gambar;
 
-        //asd
-
-        // if($request->file('gambar')){
-        //     $name = $gambar->getClientOriginalName();
-        //     $dist = 'uploads/';
-        //     $nameExp = explode('.', $name);
-        //     $nameActExp = strtolower(end($nameExp));
-        //     $newName = uniqid( '', true).'.'.$nameActExp;
-        //     $upload = $gambar->move($dist, $newName);
-        //     $request->gambar = $dist.$newName;
-        // }
         $request['user_id'] = auth()->user()->id;
         $request['masjid_id'] = auth()->user()->masjid()->id;
         $artikel = Artikel::Create($request->except('_token', 'kategori'));  //ini cara cepat buat insert ke db semua formnya
@@ -321,8 +311,9 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul'     => 'required|string|max:150',
-            'file'      => 'nullable|file|max:2048',
+            'file'      => 'nullable|file|max:2048|mimes:jpeg,bmp,png,jpg',
             'isi'       => 'required|string|max:3000',
+            'kategori'  => 'required'
            
         ]);
 
