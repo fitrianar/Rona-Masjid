@@ -15,17 +15,17 @@
 			@csrf
 				<div class="row">
 					<div class="col-md-6 form-group">
-						<input type="text" class="form-control" placeholder="Nama Anda (Required)" name="name" id="name" required="">
+						<input type="text" class="form-control" placeholder="Nama Anda" name="name" id="name" required="">
 					</div>
 					<div class="col-md-6 form-group">
-						<input type="text" class="form-control" placeholder="Email Anda (Required)" name="email" id="email" required="">
+						<input type="text" class="form-control" placeholder="Email Anda" name="email" id="email" required="">
 					</div>
 			
 					<div class="col-md-12 form-group">
-						<input type="text" class="form-control" placeholder="Subjek" name="subjek" id="subjek">
+						<input type="text" class="form-control" placeholder="Subjek" name="subjek" id="subjek" required>
 					</div>
 					<div class="col-md-12 form-group">
-						<textarea class="form-control" placeholder="Your message..." rows="5" name="pesan" id="pesan"></textarea>
+						<textarea class="form-control" placeholder="Your message..." rows="5" name="pesan" id="pesan" required></textarea>
 					</div>
 					<div class="col-md-12 form-group no-bottom-margin">
 						<button type="submit" class="submit">Kirim</button>

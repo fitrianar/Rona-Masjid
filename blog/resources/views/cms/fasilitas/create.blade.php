@@ -10,6 +10,11 @@
     <div class="form-group ">
         <label for="parent_id">Nama Fasilitas</label>
         <input type="text" class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" name="nama" value="{{ old('nama') }}" required>
+        @if ($errors->has('nama'))
+            <div class="text-danger">
+            <p>{{ $errors->first('nama')}}</p>
+            </div>
+        @endif
     </div>
 
     <div class="form-group ">
@@ -25,6 +30,11 @@
     <div class="form-group ">
         <label for="parent_id">Jenis Fasilitas</label>
         <input type="text" class="form-control {{ $errors->has('jenis_fasilitas') ? 'is-invalid' : '' }}" name="jenis_fasilitas" value="{{ old('jenis_fasilitas') }}" required>
+        @if ($errors->has('jenis_fasilitas'))
+            <div class="text-danger">
+            <p>{{ $errors->first('jenis_fasilitas')}}</p>
+            </div>
+        @endif
     </div>
 
     <!-- 
