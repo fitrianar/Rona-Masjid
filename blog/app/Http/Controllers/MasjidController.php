@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Masjid;
 use Session;
+use File;
 
 class MasjidController extends Controller
 {
@@ -14,7 +15,7 @@ class MasjidController extends Controller
         $roleId =  auth()->user()->role()->id;
 
         if($roleId == 1){
-            $masjid = Masjid::paginate(5);
+            $masjid = Masjid::orderby('created_at','desc')->paginate(5);
             return view('cms.masjid.index', compact('masjid'));
         }
 
@@ -39,7 +40,7 @@ class MasjidController extends Controller
             'file'        => 'required|file|max:2048',
             'alamat_masjid' => 'required|string|max:255',
             'l_tanah'       => 'required|string|max:10',
-            'p_tanah'       => 'required|string|max:10',
+            // 'p_tanah'       => 'required|string|max:10',
             'luas_bangunan' => 'required|string|max:64',
             'file_lampiran'    => 'nullable|file|max:2048',
             'status_masjid' => 'required|string|max:255',
@@ -89,7 +90,7 @@ class MasjidController extends Controller
             'file'        => 'nullable|file|max:2048',
             'alamat_masjid' => 'required|string|max:255',
             'l_tanah'       => 'required|string|max:64',
-            'p_tanah'       => 'required|string|max:64',
+            // 'p_tanah'       => 'required|string|max:64',
             'luas_bangunan' => 'required|string|max:64',
             'file_lampiran'    => 'nullable|file|max:2048',
             'status_masjid' => 'required|string|max:255',

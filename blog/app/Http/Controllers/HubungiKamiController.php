@@ -16,7 +16,7 @@ class HubungiKamiController extends Controller
 
     protected function datatables(Request $request)
     {
-       $data = HubungiKami::all();
+       $data = HubungiKami::orderBy('created_at', 'desc')->get();
  
         return DataTables::of($data)  
         ->addIndexColumn()
@@ -27,6 +27,10 @@ class HubungiKamiController extends Controller
         ->editColumn('email',
             function ($data){
                 return $data->email;
+        }) 
+        ->editColumn('created_at',
+            function ($data){
+                return $data->created_at;
         }) 
         ->editColumn('subjek',
             function ($data){

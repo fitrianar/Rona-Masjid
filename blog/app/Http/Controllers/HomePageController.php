@@ -23,8 +23,14 @@ class HomePageController extends Controller
         //$artikelUtama = Artikel::where('publikasi', 'utama')->first();
         $artikelUtama = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
         ->join('masjid', 'artikel.masjid_id', 'masjid.id')
-        ->where('publikasi', 'utama')->select($arrResponse)->first();
+        ->where('publikasi', '1')->select($arrResponse)->first();
 
+        if(is_null($artikelUtama)){
+            $artikelUtama = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
+            ->join('masjid', 'artikel.masjid_id', 'masjid.id')
+            ->orderBy('created_at', 'desc')->select($arrResponse)->first();    
+        }
+        
         $kategori = DB::table('kategori_has_artikel')->join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
         ->where('kategori_has_artikel.artikel_id', $artikelUtama->id)
         ->get();

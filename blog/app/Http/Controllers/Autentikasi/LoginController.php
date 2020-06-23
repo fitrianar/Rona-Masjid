@@ -57,7 +57,7 @@ class LoginController extends Controller
 
         User::verifiedEmail($user);
 
-        $request->session()->flash('alert-success', 'Pendaftaran selesai, silahkan login terlebih dahulu');
+        $request->session()->flash('alert-success', 'Pendaftaran selesai, silahkan cek email anda untuk memverifikasi akun');
         return redirect()->route('login');
     }
 

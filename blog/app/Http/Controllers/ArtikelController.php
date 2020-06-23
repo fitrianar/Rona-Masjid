@@ -317,6 +317,12 @@ class ArtikelController extends Controller
            
         ]);
 
+        if($request->publikasi == 1){
+            Artikel::where('publikasi', '1')->update([
+                'publikasi' =>  '0'
+            ]);
+        }
+
         $artikel = Artikel::where('id', $id)->first();
         if($artikel){
             if($request->file('file')){

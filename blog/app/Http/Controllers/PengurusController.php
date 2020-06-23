@@ -35,6 +35,7 @@ class PengurusController extends Controller
             'users.gambar as gambar',
             'users.email_verified as email_verified'
         ])
+        ->orderby('users.created_at','desc')
         ->paginate(5);
 
         return view('cms.pengurus.index', compact('pengguna'));
