@@ -19,7 +19,7 @@
 
     <div class="form-group ">
         <label for="parent_id">Tanggal Dilaksanakan</label>
-        <input type="date" name="bday" min="{{ now() }}" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" name="tgl_dilaksanakan" value="{{ old('tgl_dilaksanakan') }}" required>
+        <input type="date" name="tgl_dilaksanakan" min="{{ now() }}" class="form-control {{ $errors->has('tgl_dilaksanakan') ? 'is-invalid' : '' }}" value="{{ old('tgl_dilaksanakan') }}" required>
         @if ($errors->has('tgl_dilaksanakan'))
             <div class="text-danger">
             <p>{{ $errors->first('tgl_dilaksanakan')}}</p>

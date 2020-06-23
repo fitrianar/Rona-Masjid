@@ -20,11 +20,14 @@
 					</div>
 					<div class="entry-content">
 						<div class="entry-header">	
-							<span class="post-category"><a href="#" title="Technology">Technology</a></span>
-							<h3 class="entry-title"><a href="{{ route('public-detail-artikel', $artikel->id) }}" title="Traffic Jams Solved">{{$artikel->judul}}</a></h3>
+							<h3 class="entry-title"><a href="{{ route('public-detail-artikel', $artikel->id) }}">{{$artikel->judul}}</a></h3>
 						</div>								
-						<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings his mistaken...</p>
-						<a href="#" title="Read More">Read More</a>
+						@if(strlen($artikel->isi) > 500)
+        					<p>{!! substr($artikel->isi, 0, 500) . '...' !!}</p>
+      					@else
+        					<p>{!! $artikel->isi !!}</p>
+     					@endif
+						<a href="{{ route('public-detail-artikel', $artikel->id) }}" title="Read More">Detail</a>
 					</div>
 				</div>
 			</div>

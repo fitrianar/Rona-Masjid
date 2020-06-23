@@ -18,15 +18,15 @@
     </tr>
     <tr>
       <th scope="col">Luas Tanah</th>
-	  <td>{{ $masjid->l_tanah }}</td>
+	  <td>{{ $masjid->l_tanah }} <a><i>m<sup>2</sup></i></a></td>
     </tr>
-	<tr>
+	<!-- <tr>
       <th scope="col">Panjang Tanah</th>
 	  <td>{{ $masjid->p_tanah }}</td>
-    </tr>
+    </tr> -->
 	<tr>
       <th scope="col">Luas Bangunan</th>
-	  <td>{{ $masjid->luas_bangunan }}</td>
+	  <td>{{ $masjid->luas_bangunan }} <a><i>m<sup>2</sup></i></a></td>
     </tr>
 	<!-- <tr>
       <th scope="col">Lampiran</th>

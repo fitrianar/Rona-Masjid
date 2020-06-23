@@ -57,7 +57,7 @@
           @endif
         </div>
         <div class="form-group ">
-          <label for="name">Gambar</label>
+          <label for="name">Foto Identitas</label>
           <input id="minute_length"  class="form-control {{ $errors->has('file') ? 'is-invalid' : '' }}" type="file" name="file" value="{{ old('file') }}">
           @if ($errors->has( 'file'))
             <div class="text-danger">
@@ -98,7 +98,7 @@
 
     <div class="form-group ">
         <label for="name">Alamat</label>
-        <textarea class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}" cols="4" name="alamat">{{ old('alamat') }}</textarea>
+        <textarea class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}" cols="4" name="alamat">{{ old('alamat') }} </textarea>
         @if ($errors->has( 'alamat'))
             <div class="text-danger">
             <p>{{ $errors->first('alamat')}}</p>
@@ -122,10 +122,10 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agreer" required>
+              <!-- <input type="checkbox" id="agreeTerms" name="terms" value="agreer">
               <label for="agreeTerms">
               Saya bersedia mengikuti aturan dan ketentuan di website ini
-              </label>
+              </label> -->
             </div>
           </div>
           <!-- /.col -->

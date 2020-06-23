@@ -38,7 +38,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="parent_id">Luas Tanah </label> <a><i>meter</i></a>
+        <label for="parent_id">Luas Tanah </label> <a><i>m<sup>2</sup></i></a>
         <input type="number" class="form-control {{ $errors->has('l_tanah') ? 'is-invalid' : '' }}" name="l_tanah" value="{{ $masjid->l_tanah }}" required>
         @if ($errors->has('l_tanah'))
             <div class="text-danger">
@@ -47,7 +47,7 @@
         @endif
     </div>
 
-    <div class="form-group ">
+    <!-- <div class="form-group ">
         <label for="parent_id">Panjang Tanah </label> <a><i>meter</i></a> 
         <input type="number" class="form-control {{ $errors->has('p_tanah') ? 'is-invalid' : '' }}" name="p_tanah" value="{{ $masjid->p_tanah }}" required>
         @if ($errors->has('p_tanah'))
@@ -55,10 +55,10 @@
             <p>{{ $errors->first('p_tanah')}}</p>
             </div>
         @endif
-    </div>
+    </div> -->
 
     <div class="form-group ">
-        <label for="parent_id">Luas Bangunan </label>
+        <label for="parent_id">Luas Bangunan </label> <a><i>m<sup>2</sup></i></a>
         <input type="number" class="form-control {{ $errors->has('luas_bangunan') ? 'is-invalid' : '' }}" name="luas_bangunan" value="{{ $masjid->luas_bangunan }}" required>
         @if ($errors->has('luas_bangunan'))
             <div class="text-danger">
@@ -90,6 +90,7 @@
             </div>
         @endif
     </div>
+
 
     <div class="form-group ">
         <label for="name">Deskripsi</label>

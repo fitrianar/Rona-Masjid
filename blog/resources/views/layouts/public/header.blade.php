@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-lg-4 col-6">
                         <ul class="top-right user-info">
-                            <li><a href="#search-box" data-toggle="collapse" class="search collapsed" title="Search"><i class="pe-7s-search sr-ic-open"></i><i class="pe-7s-close sr-ic-close"></i></a></li>
+                            <!-- <li><a href="#search-box" data-toggle="collapse" class="search collapsed" title="Search"><i class="pe-7s-search sr-ic-open"></i><i class="pe-7s-close sr-ic-close"></i></a></li> -->
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#">
                                     @if(auth()->user())

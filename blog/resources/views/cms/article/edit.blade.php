@@ -55,6 +55,17 @@
         @endif
     </div>
 
+
+    @if(auth()->user()->role()->id == 1)
+    <div class="form-group ">
+        <label for="name">Set Artikel Utama</label>
+        <select id="publikasi" class="form-control" name="publikasi">
+            <option value="0">Set Biasa</option>
+            <option value="1">Set Utama</option>
+        </select>
+    </div>
+    @endif
+
     <!-- 
         <input type="text" name="like" value="0">
         <input type="text" name="comment" value="0"> -->

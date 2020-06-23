@@ -19,8 +19,10 @@
 					<span class="byline">Oleh {{ $kegiatan->nama }} </span>
 					<span class="post-date">{{ $kegiatan->created_at}}</span>
 				</div>
-			</div>								
+			</div>
+			<div class="text-left">								
 			{!! $kegiatan->deskripsi_kegiatan !!}
+			</div>
 		</div>
 	</article>
 	<!-- Comment Area -->

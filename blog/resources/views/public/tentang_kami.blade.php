@@ -11,7 +11,7 @@
 								<div class="block-title">
 									<h3>Tentang Kami</h3>
 								</div>
-								<p>Informasi sangat di perlukan pada masa kini. 
+								<p> 
 								Berbagai informasi dibutuhkan untuk menambah 
 								pengetahuan yang nantinya akan bermanfaat untuk 
 								penerimanya. Maka dari itu Aplikasi Portal Masjid 

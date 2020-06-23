@@ -14,6 +14,7 @@
       <th scope="col">Isi</th>
       <!-- <th scope="col">Jml Like</th> -->
       <th scope="col">Kategori</th>
+      <th scope="col">Tanggal</th>
       <th scope="col">Aksi</th>
     </tr>
   </thead>
@@ -49,10 +50,11 @@
             {data: 'gambar', name:'gambar'},
             {data: 'isi', name:'isi'},
             {data: 'kategori', name:'kategori'},
+            {data: 'created_at', name:'created_at'},
             {data: 'action', name:'action'},              
         ],
         order: [
-          1, 'desc'
+          6, 'desc'
       ]
     });
 </script>

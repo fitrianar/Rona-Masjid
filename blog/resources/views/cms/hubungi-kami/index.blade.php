@@ -13,6 +13,7 @@
       <th scope="col">Email</th>
       <th scope="col">Subjek</th>
       <th scope="col">Pesan</th>
+      <th scope="col">Tanggal</th>
       <th scope="col">Aksi</th>
     </tr>
   </thead>
@@ -42,13 +43,18 @@
         serverSide:true,
         ajax: "{{ url()->current().'/datatables' }}",
         columns:[
-            {data: 'DT_RowIndex', name:'name', searchable: false},
+            {data: 'DT_RowIndex', name:'created_at', searchable: false},
              {data: 'name', name:'name'},
              {data: 'email', name:'email'},
              {data: 'subjek', name:'subjek'},
              {data: 'pesan', name:'pesan'},     
+             {data: 'created_at', name:'created_at'},     
              {data: 'action', name:'action'},        
-        ]
+        ],
+          order: [
+              5, 'desc'
+          ]
+        
     });
 </script>
 @endpush
