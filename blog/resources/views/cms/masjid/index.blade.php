@@ -17,9 +17,9 @@
       <th scope="col">No</th>
       <th scope="col">Nama Masjid</th>
       <th scope="col">Alamat Masjid</th>
-      <th scope="col">Luas Tanah</th>
-      <th scope="col">Panjang Tanah</th>
-      <th scope="col">Luas Bangunan</th>
+      <th scope="col">Luas Tanah (<i>m<sup>2</sup></i>)</th>
+      <!-- <th scope="col">Panjang Tanah</th> -->
+      <th scope="col">Luas Bangunan (<i>m<sup>2</sup></i>)</th>
       <th scope="col">Status Masjid</th>
       <th scope="col">Tanggal</th>
       <th scope="col">Aksi</th>
@@ -33,7 +33,7 @@
       <td>{{ $msj->nama_masjid }}</td>
       <td>{{ $msj->alamat_masjid }}</td>
       <td>{{ $msj->l_tanah }}</td>
-      <td>{{ $msj->p_tanah }}</td>
+      <!-- <td>{{ $msj->p_tanah }}</td> -->
       <td>{{ $msj->luas_bangunan }}</td>
       <td>{{ $msj->status_masjid }}</td>
       <td>{{ $msj->created_at }}</td>

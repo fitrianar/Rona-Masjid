@@ -15,6 +15,7 @@
       <!-- <th scope="col">Jml Like</th> -->
       <th scope="col">Kategori</th>
       <th scope="col">Tanggal</th>
+      <th scope="col">deleted</th>
       <th scope="col">Aksi</th>
     </tr>
   </thead>
@@ -51,6 +52,7 @@
             {data: 'isi', name:'isi'},
             {data: 'kategori', name:'kategori'},
             {data: 'created_at', name:'created_at'},
+            {data: 'trash', name:'trash'},
             {data: 'action', name:'action'},              
         ],
         order: [
