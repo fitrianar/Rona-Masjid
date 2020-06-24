@@ -22,6 +22,7 @@ class ArtikelController extends Controller
 
     public function index()
     {
+
         $roleId = auth()->user()->role()->id;
         $articles = Array();
         if($roleId == 3){ //pengurus
@@ -102,6 +103,7 @@ class ArtikelController extends Controller
                 'artikel.judul as judul',
                 'artikel.gambar as gambar',
                 'artikel.isi as isi',
+                'artikel.trash as trash',
                 'artikel.created_at as created_at',
                 'kategori.nama as nama',
             ])
@@ -116,6 +118,7 @@ class ArtikelController extends Controller
                 'artikel.judul as judul',
                 'artikel.gambar as gambar',
                 'artikel.isi as isi',
+                'artikel.trash as trash',
                 'artikel.created_at as created_at',
                 'kategori.nama as nama',
             ])
@@ -137,6 +140,7 @@ class ArtikelController extends Controller
                     'judul' =>  $article->judul,
                     'gambar'=>  $article->gambar,
                     'isi'   =>  $article->isi,
+                    'trash'   =>  $article->trash,
                     'created_at'   =>  $article->created_at
                 ];
                 $data[$article->id]['kategori'][] = $article->nama;
@@ -153,6 +157,15 @@ class ArtikelController extends Controller
         ->editColumn('created_at',
             function ($data){
                 return $data['created_at'];
+        }) 
+        ->editColumn('trash',
+            function ($data){
+                if($data['trash'] == 1){
+                    return 'deleted';
+                }else if($data['trash'] == 0){
+                    return 'not deleted';
+                }
+                return 'deleted';
         }) 
         ->editColumn('gambar',
             function ($data){
@@ -242,6 +255,8 @@ class ArtikelController extends Controller
         }  
         
         $request['gambar'] = $gambar;
+
+        $request['slug'] = strtolower(str_replace(' ', '-', $request->judul));
 
         $request['user_id'] = auth()->user()->id;
         $request['masjid_id'] = auth()->user()->masjid()->id;
@@ -361,8 +376,13 @@ class ArtikelController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $artikel = Artikel::where('id', $id)->delete();
-        DB::table('kategori_has_artikel')->where('artikel_id', $id)->delete();
+        $artikel = Artikel::where('id', $id)->first();
+
+        if($artikel){
+            $artikel->update([
+                'trash' =>  '1' //soft delete
+            ]);
+        }
         $request->session()->flash('alert-success', 'Sukses Menghapus Data');
         return redirect()->route('article.index')->with('Success', 'Article has been delete');
     }

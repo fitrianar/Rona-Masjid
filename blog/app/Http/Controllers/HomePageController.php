@@ -23,11 +23,12 @@ class HomePageController extends Controller
         //$artikelUtama = Artikel::where('publikasi', 'utama')->first();
         $artikelUtama = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
         ->join('masjid', 'artikel.masjid_id', 'masjid.id')
-        ->where('publikasi', '1')->select($arrResponse)->first();
+        ->where('publikasi', '1')
+        ->where('artikel.trash', 0)->select($arrResponse)->first();
 
         if(is_null($artikelUtama)){
             $artikelUtama = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
-            ->join('masjid', 'artikel.masjid_id', 'masjid.id')
+            ->join('masjid', 'artikel.masjid_id', 'masjid.id')->where('artikel.trash', 0)
             ->orderBy('created_at', 'desc')->select($arrResponse)->first();    
         }
         
@@ -101,11 +102,12 @@ class HomePageController extends Controller
             ->join('kategori_has_artikel', 'kategori.id', 'kategori_has_artikel.kategori_id')
             ->join('artikel', 'kategori_has_artikel.artikel_id', 'artikel.id')
             ->select('artikel.*')
+            ->where('artikel.trash', 0)
             ->paginate(5);
 
             return view('public.artikel.index', compact('articles'));
         }
-        $articles = Artikel::orderBy('created_at', 'desc')->paginate(5);
+        $articles = Artikel::orderBy('created_at', 'desc')->where('artikel.trash', 0)->paginate(5);
         return view('public.artikel.index', compact('articles'));
     }
 
@@ -123,7 +125,7 @@ class HomePageController extends Controller
         ];
         $artikel = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
         ->join('masjid', 'artikel.masjid_id', 'masjid.id')
-        ->where('artikel.id', $id)->select($arrResponse)->first();
+        ->where('artikel.id', $id)->where('artikel.trash', 0)->select($arrResponse)->first();
    
         if($artikel){
             $kategori = DB::table('kategori_has_artikel')->join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')

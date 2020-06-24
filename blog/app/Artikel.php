@@ -14,18 +14,20 @@ class Artikel extends Model
     protected $fillable = [
         'id',
         'judul',
+        'slug',
         'gambar',
         'isi',
         'tgl_dibuat',
         'user_id',
         'masjid_id',
         'publikasi',
-        'status'
+        'status',
+        'trash'
     ];
 
     public static function artikelTerbaru()
     {
-        return Artikel::orderBy('created_at', 'desc')->take(5) ->get(); 
+        return Artikel::orderBy('created_at', 'desc')->where('trash', 0)->take(5) ->get(); 
     }
 
 

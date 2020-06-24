@@ -80,6 +80,14 @@ class LoginController extends Controller
         $check = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
         if($check){
+
+            if(is_null( auth()->user()->email_verified)){
+                Auth::logout();
+                Session::flush();
+                $request->session()->flash('alert-warning', 'harap verifikasi email dahulu');
+                return Redirect::to('/login');
+            }
+
             return redirect()->route('dashboard');
         }else{
             $request->session()->flash('alert-warning', 'Password/email salah');
