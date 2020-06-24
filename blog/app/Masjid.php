@@ -21,7 +21,10 @@ class Masjid extends Model
         'luas_bangunan',
         'lampiran_masjid',
         'status_masjid',
-        'deskripsi'
+        'deskripsi',
+        'facebook',
+        'instagram',
+        'twitter'
     ];
 
     public function users()
