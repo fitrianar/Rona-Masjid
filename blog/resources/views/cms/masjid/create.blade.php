@@ -101,6 +101,36 @@
         @endif
     </div>
 
+    <div class="form-group ">
+        <label for="parent_id">Facebook</label>
+        <input type="text" class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" name="facebook" value="{{ old('facebook') }}">
+        @if ($errors->has( 'facebook'))
+            <div class="text-danger">
+            <p>{{ $errors->first('facebook')}}</p>
+            </div>
+        @endif
+    </div>
+
+    <div class="form-group ">
+        <label for="parent_id">Instagram</label>
+        <input type="text" class="form-control {{ $errors->has('instagram') ? 'is-invalid' : '' }}" name="instagram" value="{{ old('instagram') }}">
+        @if ($errors->has( 'instagram'))
+            <div class="text-danger">
+            <p>{{ $errors->first('instagram')}}</p>
+            </div>
+        @endif
+    </div>
+
+    <div class="form-group ">
+        <label for="parent_id">Twitter</label>
+        <input type="text" class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}" name="twitter" value="{{ old('twitter') }}">
+        @if ($errors->has( 'twitter'))
+            <div class="text-danger">
+            <p>{{ $errors->first('twitter')}}</p>
+            </div>
+        @endif
+    </div>
+
     <!-- 
         <input type="text" name="like" value="0">
         <input type="text" name="comment" value="0"> -->

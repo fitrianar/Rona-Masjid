@@ -38,11 +38,48 @@
     </tr>
 	<tr>
       <th scope="col">Deskripsi</th>
-	  <td>{{ $masjid->deskripsi }}</td>
+	  <!-- <td>{{ $masjid->deskripsi }}</td> -->
+	  <td>
+	  	@if(empty($masjid->deskripsi))
+			-
+		@else
+		<p>{{ $masjid->deskripsi }}</p>
+		@endif
+		</td>
     </tr>
-  
+	<tr>
+      <th scope="col">Facebook</th>
+	  <td>
+	  	@if(empty($masjid->facebook))
+			-
+		@else
+		<a href="https://{{ $masjid->facebook }}" target="_blank">{{ $masjid->facebook }}<a/>
+		@endif
+		</td>
+    </tr>
+	<tr>
+      <th scope="col">Instagram</th>
+	  <td>
+	  	@if(empty($masjid->instagram))
+			-
+		@else
+		<a href="https://{{ $masjid->instagram }}" target="_blank">{{ $masjid->instagram }}<a/>
+		@endif
+		</td>
+	</tr>
+	<tr>
+      <th scope="col">Twitter</th>
+	  <td>
+	  	@if(empty($masjid->instagram))
+			-
+		@else
+		<a href="https://{{ $masjid->twitter }}" target="_blank">{{ $masjid->twitter }}<a/>
+		@endif
+		</td>
+	</tr>
   </tbody>
 </table>
+<!-- <img src="{{ asset('img/facebook.png') }}" style="height:100px wight:100px !important" alt="team1"/> -->
 </div>
 
 <div class="col-xl-4 col-lg-4 col-md-4 col-4 content-area text-center">
