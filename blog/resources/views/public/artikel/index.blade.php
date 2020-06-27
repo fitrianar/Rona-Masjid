@@ -20,14 +20,14 @@
 					</div>
 					<div class="entry-content">
 						<div class="entry-header">	
-							<h3 class="entry-title"><a href="{{ route('public-detail-artikel', $artikel->id) }}">{{$artikel->judul}}</a></h3>
+							<h3 class="entry-title"><a href="{{ route('public-detail-artikel-slug', $artikel->slug) }}">{{$artikel->judul}}</a></h3>
 						</div>								
 						@if(strlen($artikel->isi) > 500)
         					<p>{!! substr($artikel->isi, 0, 500) . '...' !!}</p>
       					@else
         					<p>{!! $artikel->isi !!}</p>
      					@endif
-						<a href="{{ route('public-detail-artikel', $artikel->id) }}" title="Read More">Detail</a>
+						<a href="{{ route('public-detail-artikel-slug', $artikel->slug) }}" title="Read More">Detail</a>
 					</div>
 				</div>
 			</div>

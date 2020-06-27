@@ -5,8 +5,8 @@
 								@foreach(\App\Artikel::artikelTerbaru() as $artikel)
 								<div class="latest-content">
 									<a href="#" title="Recent Posts"><i><img src="{{ asset($artikel->gambar) }}" width="100" height="80" class="wp-psost-image" height="100px" weight="100px" alt="blog-1" /></i></a>
-									<h5><a title="Beautiful Landscape View of Rio de Janeiro" href="{{ route('public-detail-artikel', $artikel->id) }}">{{ $artikel->judul}}</a></h5>
-									<span><a href="{{ route('public-detail-artikel', $artikel->id) }}">{{ $artikel->created_at }}</a></span>
+									<h5><a title="Beautiful Landscape View of Rio de Janeiro" href="{{ route('public-detail-artikel-slug', $artikel->slug) }}">{{ $artikel->judul}}</a></h5>
+									<span><a href="{{ route('public-detail-artikel-slug', $artikel->slug) }}">{{ $artikel->created_at }}</a></span>
 								</div>
 								@endforeach
 								
