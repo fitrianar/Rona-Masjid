@@ -16,6 +16,7 @@ class HomePageController extends Controller
             'artikel.isi',
             'artikel.gambar',
             'artikel.created_at',
+            'artikel.slug',
             'users.nama',
             'masjid.nama_masjid',
             'users.gambar as user_gambar'
@@ -116,6 +117,7 @@ class HomePageController extends Controller
         $arrResponse = [
             'artikel.id',
             'artikel.judul',
+            'artikel.slug',
             'artikel.isi',
             'artikel.gambar',
             'artikel.created_at',
@@ -130,6 +132,34 @@ class HomePageController extends Controller
         if($artikel){
             $kategori = DB::table('kategori_has_artikel')->join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
             ->where('kategori_has_artikel.artikel_id', $artikel->id)
+            ->get(); 
+
+            return view('public.artikel.detail', compact('artikel', 'kategori'));
+        }
+
+        abort(403); //if artikel tidak ada
+    }
+
+    public function artikelDetailSlug($slug)
+    {
+        $arrResponse = [
+            'artikel.id',
+            'artikel.judul',
+            'artikel.slug',
+            'artikel.isi',
+            'artikel.gambar',
+            'artikel.created_at',
+            'users.nama',
+            'masjid.nama_masjid',
+            'users.gambar as user_gambar'
+        ];
+        $artikel = DB::table('artikel')->join('users', 'artikel.user_id', 'users.id')
+        ->join('masjid', 'artikel.masjid_id', 'masjid.id')
+        ->where('artikel.slug', $slug)->where('artikel.trash', 0)->select($arrResponse)->first();
+   
+        if($artikel){
+            $kategori = DB::table('kategori_has_artikel')->join('kategori', 'kategori_has_artikel.kategori_id', 'kategori.id')
+            ->where('kategori_has_artikel.artikel_id', $artikel->slug)
             ->get(); 
 
             return view('public.artikel.detail', compact('artikel', 'kategori'));
