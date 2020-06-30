@@ -12,10 +12,10 @@
     <div class="text-center">
         <img src="{{ asset($masjid->gambar) }}" class="avatar img-square img-thumbnail" alt="avatar" >
         <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center {{ $errors->has('gambar') ? 'is-invalid' : '' }} center-block well well-sm" name="file">
-        @if ($errors->has('gambar'))
+        <input type="file" class="text-center {{ $errors->has('file') ? 'is-invalid' : '' }} center-block well well-sm" name="file">
+        @if ($errors->has('file'))
             <div class="text-danger">
-            <p>{{ $errors->first('gambar')}}</p>
+            <p>{{ $errors->first('file')}}</p>
             </div>
         @endif
       </div>
@@ -44,16 +44,6 @@
         @if ($errors->has('l_tanah'))
             <div class="text-danger">
             <p>{{ $errors->first('l_tanah')}}</p>
-            </div>
-        @endif
-    </div>
-
-    <div class="form-group ">
-        <label for="parent_id">Panjang Tanah </label> <a><i>meter</i></a> 
-        <input type="number" class="form-control {{ $errors->has('p_tanah') ? 'is-invalid' : '' }}" name="p_tanah" value="{{ $masjid->p_tanah }}" required>
-        @if ($errors->has('p_tanah'))
-            <div class="text-danger">
-            <p>{{ $errors->first('p_tanah')}}</p>
             </div>
         @endif
     </div>
@@ -93,7 +83,7 @@
             <p>{{ $errors->first('status_masjid')}}</p>
             </div>
         @endif
-    </div>
+    </div>  
 
     <div class="form-group ">
         <label for="name">Deskripsi</label>
@@ -104,6 +94,37 @@
             </div>
         @endif
     </div>
+
+    <div class="form-group ">
+        <label for="parent_id">URL Facebook</label>
+        <input type="text" class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" name="facebook" value="{{ $masjid->facebook }}">
+        @if ($errors->has( 'facebook'))
+            <div class="text-danger">
+            <p>{{ $errors->first('facebook')}}</p>
+            </div>
+        @endif
+    </div>
+
+    <div class="form-group ">
+        <label for="parent_id">URL Instagram</label>
+        <input type="text" class="form-control {{ $errors->has('instagram') ? 'is-invalid' : '' }}" name="instagram" value="{{ $masjid->instagram }}">
+        @if ($errors->has( 'instagram'))
+            <div class="text-danger">
+            <p>{{ $errors->first('instagram')}}</p>
+            </div>
+        @endif
+    </div>
+
+    <div class="form-group ">
+        <label for="parent_id">URL Twitter</label>
+        <input type="text" class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}" name="twitter" value="{{ $masjid->twitter }}">
+        @if ($errors->has( 'twitter'))
+            <div class="text-danger">
+            <p>{{ $errors->first('twitter')}}</p>
+            </div>
+        @endif
+    </div>
+
     <button type="submit" class="btn btn-primary">Ubah</button>
 
 </div>

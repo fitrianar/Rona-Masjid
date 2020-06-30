@@ -30,7 +30,8 @@ Route::prefix('kegiatan')->group(function () {
 
 Route::prefix('artikel')->group(function () { 
     Route::get('/', 'HomePageController@artikelIndex')->name('public-artikel-index');
-    Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-artikel');
+    // Route::get('/detail/{id}', 'HomePageController@artikelDetail')->name('public-detail-artikel');
+    Route::get('/detail/{slug}', 'HomePageController@artikelDetailSlug')->name('public-detail-artikel-slug');
 });
 
 Route::prefix('masjid')->group(function () { //belum

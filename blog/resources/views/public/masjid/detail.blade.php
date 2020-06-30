@@ -53,7 +53,7 @@
 	  	@if(empty($masjid->facebook))
 			-
 		@else
-		<a href="https://{{ $masjid->facebook }}" target="_blank">{{ $masjid->facebook }}<a/>
+		<a href="{{ $masjid->facebook }}" target="_blank">{{ $masjid->facebook }}<a/>
 		@endif
 		</td>
     </tr>
@@ -63,7 +63,7 @@
 	  	@if(empty($masjid->instagram))
 			-
 		@else
-		<a href="https://{{ $masjid->instagram }}" target="_blank">{{ $masjid->instagram }}<a/>
+		<a href="{{ $masjid->instagram }}" target="_blank">{{ $masjid->instagram }}<a/>
 		@endif
 		</td>
 	</tr>
@@ -73,7 +73,7 @@
 	  	@if(empty($masjid->instagram))
 			-
 		@else
-		<a href="https://{{ $masjid->twitter }}" target="_blank">{{ $masjid->twitter }}<a/>
+		<a href="{{ $masjid->twitter }}" target="_blank">{{ $masjid->twitter }}<a/>
 		@endif
 		</td>
 	</tr>

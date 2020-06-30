@@ -103,7 +103,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="parent_id">Facebook</label>
+        <label for="parent_id">URL Facebook</label>
         <input type="text" class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" name="facebook" value="{{ $masjid->facebook }}">
         @if ($errors->has( 'facebook'))
             <div class="text-danger">
@@ -113,7 +113,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="parent_id">Instagram</label>
+        <label for="parent_id">URL Instagram</label>
         <input type="text" class="form-control {{ $errors->has('instagram') ? 'is-invalid' : '' }}" name="instagram" value="{{ $masjid->instagram }}">
         @if ($errors->has( 'instagram'))
             <div class="text-danger">
@@ -123,7 +123,7 @@
     </div>
 
     <div class="form-group ">
-        <label for="parent_id">Twitter</label>
+        <label for="parent_id">URL Twitter</label>
         <input type="text" class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}" name="twitter" value="{{ $masjid->twitter }}">
         @if ($errors->has( 'twitter'))
             <div class="text-danger">
