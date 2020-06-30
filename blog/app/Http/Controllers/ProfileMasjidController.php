@@ -29,12 +29,14 @@ class ProfileMasjidController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        
         $request->validate([
             'nama_masjid'   => 'required|string|max:64',
             'file'        => 'nullable|file|max:2048',
             'alamat_masjid' => 'required|string|max:255',
             'l_tanah'       => 'required|string|max:64',
-            'p_tanah'       => 'required|string|max:64',
+            // 'p_tanah'       => 'required|string|max:64',
             'luas_bangunan' => 'required|string|max:64',
             'lampiran'    => 'nullable|file|max:2048',
             'status_masjid' => 'required|string|max:255',
@@ -42,6 +44,11 @@ class ProfileMasjidController extends Controller
         ]); 
 
         $masjid = Masjid::where('id', $id)->first();
+
+        $request['facebook'] = is_null($request->facebook) == true ? '-' : $request->facebook;
+        $request['instagram'] = is_null($request->instagram) == true ? '-' : $request->instagram;
+        $request['twitter'] = is_null($request->twitter) == true ? '-' : $request->twitter;
+
 
         if($masjid){
             if($request->file('lampiran')){
@@ -64,7 +71,7 @@ class ProfileMasjidController extends Controller
                 Masjid::where('id', $id)->update($request->only('gambar'));
             }
     
-            Masjid::where('id', $id)->update($request->only('nama_masjid', 'alamat_masjid', 'l_tanah', 'p_tanah', 'luas_bangunan', 'status_masjid', 'deskripsi'));
+            Masjid::where('id', $id)->update($request->only('nama_masjid', 'alamat_masjid', 'l_tanah', 'p_tanah', 'luas_bangunan', 'status_masjid', 'deskripsi', 'facebook', 'twitter', 'instagram'));
     
             $request->session()->flash('alert-success', 'Sukses Mengubah Data');
             return redirect()->route('profile-masjid.index'); 
